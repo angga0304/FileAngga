@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbAnggaModelStoreContainer" CdmEntityContainer="DbAnggaEntities">
+    <EntitySetMapping Name="Anaks">
+      <EntityTypeMapping TypeName="DbAnggaModel.Anak">
+        <MappingFragment StoreEntitySet="Anak">
+          <ScalarProperty Name="AnakId" ColumnName="AnakId" />
+          <ScalarProperty Name="AnakName" ColumnName="AnakName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="IdOT" ColumnName="IdOT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrangTuas">
+      <EntityTypeMapping TypeName="DbAnggaModel.OrangTua">
+        <MappingFragment StoreEntitySet="OrangTua">
+          <ScalarProperty Name="OTId" ColumnName="OTId" />
+          <ScalarProperty Name="OTName" ColumnName="OTName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="lihattabeljoin" FunctionName="DbAnggaModel.Store.lihattabeljoin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DbAnggaModel.lihattabeljoin_Result">
+          <ScalarProperty Name="AnakName" ColumnName="AnakName" />
+          <ScalarProperty Name="umur_anak" ColumnName="umur_anak" />
+          <ScalarProperty Name="OTName" ColumnName="OTName" />
+          <ScalarProperty Name="umur_ot" ColumnName="umur_ot" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ltjparam" FunctionName="DbAnggaModel.Store.ltjparam">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DbAnggaModel.ltjparam_Result">
+          <ScalarProperty Name="AnakName" ColumnName="AnakName" />
+          <ScalarProperty Name="umur_anak" ColumnName="umur_anak" />
+          <ScalarProperty Name="OTName" ColumnName="OTName" />
+          <ScalarProperty Name="umur_ot" ColumnName="umur_ot" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

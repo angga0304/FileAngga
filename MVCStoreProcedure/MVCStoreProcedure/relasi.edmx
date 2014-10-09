@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DbAnggaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DbAnggaModelStoreContainer">
+          <EntitySet Name="Anak" EntityType="DbAnggaModel.Store.Anak" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrangTua" EntityType="DbAnggaModel.Store.OrangTua" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Anak">
+          <Key>
+            <PropertyRef Name="AnakId" />
+          </Key>
+          <Property Name="AnakId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="AnakName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="IdOT" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="OrangTua">
+          <Key>
+            <PropertyRef Name="OTId" />
+          </Key>
+          <Property Name="OTId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="OTName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+        </EntityType>
+        <Function Name="lihattabeljoin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ltjparam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="umur" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbAnggaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DbAnggaEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Anaks" EntityType="DbAnggaModel.Anak" />
+          <EntitySet Name="OrangTuas" EntityType="DbAnggaModel.OrangTua" />
+          <FunctionImport Name="lihattabeljoin" ReturnType="Collection(DbAnggaModel.lihattabeljoin_Result)" />
+          <FunctionImport Name="ltjparam" ReturnType="Collection(DbAnggaModel.ltjparam_Result)">
+            <Parameter Name="umur" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Anak">
+          <Key>
+            <PropertyRef Name="AnakId" />
+          </Key>
+          <Property Name="AnakId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="AnakName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="IdOT" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="OrangTua">
+          <Key>
+            <PropertyRef Name="OTId" />
+          </Key>
+          <Property Name="OTId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="OTName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Age" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="lihattabeljoin_Result">
+          <Property Type="String" Name="AnakName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="umur_anak" Nullable="true" />
+          <Property Type="String" Name="OTName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="umur_ot" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ltjparam_Result">
+          <Property Type="String" Name="AnakName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="umur_anak" Nullable="true" />
+          <Property Type="String" Name="OTName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="umur_ot" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbAnggaModelStoreContainer" CdmEntityContainer="DbAnggaEntities">
+          <EntitySetMapping Name="Anaks">
+            <EntityTypeMapping TypeName="DbAnggaModel.Anak">
+              <MappingFragment StoreEntitySet="Anak">
+                <ScalarProperty Name="AnakId" ColumnName="AnakId" />
+                <ScalarProperty Name="AnakName" ColumnName="AnakName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="IdOT" ColumnName="IdOT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrangTuas">
+            <EntityTypeMapping TypeName="DbAnggaModel.OrangTua">
+              <MappingFragment StoreEntitySet="OrangTua">
+                <ScalarProperty Name="OTId" ColumnName="OTId" />
+                <ScalarProperty Name="OTName" ColumnName="OTName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="lihattabeljoin" FunctionName="DbAnggaModel.Store.lihattabeljoin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbAnggaModel.lihattabeljoin_Result">
+                <ScalarProperty Name="AnakName" ColumnName="AnakName" />
+                <ScalarProperty Name="umur_anak" ColumnName="umur_anak" />
+                <ScalarProperty Name="OTName" ColumnName="OTName" />
+                <ScalarProperty Name="umur_ot" ColumnName="umur_ot" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ltjparam" FunctionName="DbAnggaModel.Store.ltjparam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbAnggaModel.ltjparam_Result">
+                <ScalarProperty Name="AnakName" ColumnName="AnakName" />
+                <ScalarProperty Name="umur_anak" ColumnName="umur_anak" />
+                <ScalarProperty Name="OTName" ColumnName="OTName" />
+                <ScalarProperty Name="umur_ot" ColumnName="umur_ot" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

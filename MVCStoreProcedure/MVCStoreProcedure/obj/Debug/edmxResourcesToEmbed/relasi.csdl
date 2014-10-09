@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbAnggaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DbAnggaEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Anaks" EntityType="DbAnggaModel.Anak" />
+    <EntitySet Name="OrangTuas" EntityType="DbAnggaModel.OrangTua" />
+    <FunctionImport Name="lihattabeljoin" ReturnType="Collection(DbAnggaModel.lihattabeljoin_Result)" />
+    <FunctionImport Name="ltjparam" ReturnType="Collection(DbAnggaModel.ltjparam_Result)">
+      <Parameter Name="umur" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Anak">
+    <Key>
+      <PropertyRef Name="AnakId" />
+    </Key>
+    <Property Name="AnakId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="AnakName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="IdOT" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="OrangTua">
+    <Key>
+      <PropertyRef Name="OTId" />
+    </Key>
+    <Property Name="OTId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="OTName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Age" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="lihattabeljoin_Result">
+    <Property Type="String" Name="AnakName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="umur_anak" Nullable="true" />
+    <Property Type="String" Name="OTName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="umur_ot" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ltjparam_Result">
+    <Property Type="String" Name="AnakName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="umur_anak" Nullable="true" />
+    <Property Type="String" Name="OTName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="umur_ot" Nullable="true" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,52 @@
+﻿@model CobaMVCberelasi.OrangTua
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>OrangTua</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OTId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OTId)
+            @Html.ValidationMessageFor(model => model.OTId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OTName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OTName)
+            @Html.ValidationMessageFor(model => model.OTName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Age)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Age)
+            @Html.ValidationMessageFor(model => model.Age)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

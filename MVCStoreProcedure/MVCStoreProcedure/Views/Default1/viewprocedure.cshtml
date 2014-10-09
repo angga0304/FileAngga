@@ -1,0 +1,28 @@
+﻿@using MVCStoreProcedure;
+@{
+    ViewBag.Title = "viewprocedure";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>viewprocedure</h2>
+<table>
+    <tr>
+        <th>
+            Nama Anak
+        </th>
+        <th>
+            Nama Ibu
+        </th>
+    </tr>
+    @foreach(lihattabeljoin_Result item in ViewBag.sdsd)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnakName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OTName)
+            </td>
+        </tr>
+    }
+</table>

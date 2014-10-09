@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CobaMVCberelasi.OrangTua>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OTId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OTName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OTId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OTName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit/"+item.OTId) |
+            @Html.ActionLink("Details", "Details/"+item.OTId) |
+            @Html.ActionLink("Delete", "Delete/"+item.OTId)
+        </td>
+    </tr>
+}
+
+</table>
