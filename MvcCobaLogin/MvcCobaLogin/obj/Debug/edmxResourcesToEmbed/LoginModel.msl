@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbAnggaModelStoreContainer" CdmEntityContainer="DbAnggaEntities">
+    <EntitySetMapping Name="Anaks">
+      <EntityTypeMapping TypeName="DbAnggaModel.Anak">
+        <MappingFragment StoreEntitySet="Anak">
+          <ScalarProperty Name="AnakId" ColumnName="AnakId" />
+          <ScalarProperty Name="AnakName" ColumnName="AnakName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="IdOT" ColumnName="IdOT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="DbAnggaModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

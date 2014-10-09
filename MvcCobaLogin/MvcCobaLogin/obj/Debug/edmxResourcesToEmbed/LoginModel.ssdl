@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbAnggaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DbAnggaModelStoreContainer">
+    <EntitySet Name="Anak" EntityType="DbAnggaModel.Store.Anak" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="DbAnggaModel.Store.users" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Anak">
+    <Key>
+      <PropertyRef Name="AnakId" />
+    </Key>
+    <Property Name="AnakId" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="AnakName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Age" Type="int" />
+    <Property Name="IdOT" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="10" />
+    <Property Name="userpassword" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,48 @@
+﻿@model MvcCobaLogin.user
+
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>login</h2>
+@using(Html.BeginForm("Login","Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <br>
+    <table>
+        <tr>
+            <td>
+                
+                @Html.LabelFor(a =>a.username)
+                
+            </td>
+             <td>
+                @Html.TextBoxFor(a => a.username)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.username)
+            </td>
+        </tr>
+        <tr>
+            <td>
+            @Html.LabelFor(a => a.userpassword)
+                </td>
+            <td>
+                @Html.TextBoxFor(a => a.userpassword)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.userpassword)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-field">
+                <input type="submit" value ="login" />
+                </div>
+            </td>
+            <td> </td>
+        </tr>
+    </table>
+}
