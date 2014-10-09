@@ -11,13 +11,19 @@ namespace MvcCobaLogin.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
             return View();
         }
 
         public ActionResult login()
         {
-            return View();
+            if (Session["LogeduserId"] != null)
+            {
+                return RedirectToAction("Index", "Anak");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -44,6 +50,13 @@ namespace MvcCobaLogin.Controllers
             }
             else
             { return View(u); }
+        }
+
+        public ActionResult logout()
+        {
+            Session["LogeduserId"] = null;
+            Session["LogedUserName"] = null;
+            return RedirectToAction("Login", "Home");
         }
 
         public ActionResult About()

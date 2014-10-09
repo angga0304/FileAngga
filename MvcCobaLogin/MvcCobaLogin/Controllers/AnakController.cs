@@ -17,7 +17,10 @@ namespace MvcCobaLogin.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Anaks.ToList());
+            if (Session["LogeduserId"] != null)
+                return View(db.Anaks.ToList());
+            else
+                return RedirectToAction("login", "Home");
         }
 
         //
