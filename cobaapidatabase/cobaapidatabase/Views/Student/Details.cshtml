@@ -1,0 +1,65 @@
+﻿@model cobaapidatabase.mahasiswa
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>mahasiswa</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MhsId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MhsId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NamaPertama)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NamaPertama)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NamaTerakhir)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NamaTerakhir)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.umur)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.umur)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.jnsk)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.jnsk)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.angkatan)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.angkatan)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ipk)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ipk)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

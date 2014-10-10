@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DbAnggaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DbAnggaModelStoreContainer">
+          <EntitySet Name="mahasiswa" EntityType="DbAnggaModel.Store.mahasiswa" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="mahasiswa">
+          <Key>
+            <PropertyRef Name="MhsId" />
+          </Key>
+          <Property Name="MhsId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="NamaPertama" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamaTerakhir" Type="nvarchar" MaxLength="50" />
+          <Property Name="umur" Type="int" />
+          <Property Name="jnsk" Type="nvarchar" MaxLength="50" />
+          <Property Name="angkatan" Type="nvarchar" MaxLength="50" />
+          <Property Name="ipk" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbAnggaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DbAnggaEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="mahasiswas" EntityType="DbAnggaModel.mahasiswa" />
+        </EntityContainer>
+        <EntityType Name="mahasiswa">
+          <Key>
+            <PropertyRef Name="MhsId" />
+          </Key>
+          <Property Name="MhsId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="NamaPertama" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NamaTerakhir" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="umur" Type="Int32" />
+          <Property Name="jnsk" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="angkatan" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ipk" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbAnggaModelStoreContainer" CdmEntityContainer="DbAnggaEntities">
+          <EntitySetMapping Name="mahasiswas">
+            <EntityTypeMapping TypeName="DbAnggaModel.mahasiswa">
+              <MappingFragment StoreEntitySet="mahasiswa">
+                <ScalarProperty Name="MhsId" ColumnName="MhsId" />
+                <ScalarProperty Name="NamaPertama" ColumnName="NamaPertama" />
+                <ScalarProperty Name="NamaTerakhir" ColumnName="NamaTerakhir" />
+                <ScalarProperty Name="umur" ColumnName="umur" />
+                <ScalarProperty Name="jnsk" ColumnName="jnsk" />
+                <ScalarProperty Name="angkatan" ColumnName="angkatan" />
+                <ScalarProperty Name="ipk" ColumnName="ipk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

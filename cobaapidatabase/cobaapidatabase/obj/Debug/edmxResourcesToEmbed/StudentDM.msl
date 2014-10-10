@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbAnggaModelStoreContainer" CdmEntityContainer="DbAnggaEntities">
+    <EntitySetMapping Name="mahasiswas">
+      <EntityTypeMapping TypeName="DbAnggaModel.mahasiswa">
+        <MappingFragment StoreEntitySet="mahasiswa">
+          <ScalarProperty Name="MhsId" ColumnName="MhsId" />
+          <ScalarProperty Name="NamaPertama" ColumnName="NamaPertama" />
+          <ScalarProperty Name="NamaTerakhir" ColumnName="NamaTerakhir" />
+          <ScalarProperty Name="umur" ColumnName="umur" />
+          <ScalarProperty Name="jnsk" ColumnName="jnsk" />
+          <ScalarProperty Name="angkatan" ColumnName="angkatan" />
+          <ScalarProperty Name="ipk" ColumnName="ipk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
