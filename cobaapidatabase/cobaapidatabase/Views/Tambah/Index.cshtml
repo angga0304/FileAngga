@@ -1,0 +1,70 @@
+﻿@model IEnumerable<cobaapidatabase.mahasiswa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MhsId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NamaPertama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NamaTerakhir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.umur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jnsk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.angkatan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ipk)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MhsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamaPertama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamaTerakhir)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.umur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jnsk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.angkatan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ipk)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

@@ -528,17 +528,17 @@ input[type="checkbox"].input-validation-error {
 /* tables
 ----------------------------------------------------------*/
 table {
-    /*border-collapse: initial;*/
+    border-collapse: initial;
     border-spacing: 0;
     margin-top: 0.75em;
-    border: solid;
+    /*border: solid;*/
 }
 
 th {
     text-align: center;
     font-size: 1.2em;
     text-align: left;
-    border: solid;
+    /*border: solid;*/
     padding-left: 0;
 }
 

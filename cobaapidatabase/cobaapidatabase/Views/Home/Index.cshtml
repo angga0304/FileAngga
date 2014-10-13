@@ -2,52 +2,119 @@
     <div class="content-wrapper">
         <div class="float-left">
             <p class="site-title">
-                <a href="~/">ASP.NET Web API</a></p>
+                <a href="~/api/Siswa">ASP.NET Web API</a></p>
         </div>
     </div>
 </header>
 <div id="body">
     <section class="featured">
         <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to ASP.NET Web API!</h1>
-                <h2>Modify the code in this template to jump-start your ASP.NET Web API development.</h2>
+            <hgroup class ="title">
+                <h1>Home Page</h1>
+                <h2> Web Api Test Consume</h2>
             </hgroup>
-            <p>
-                ASP.NET Web API allows you to expose your applications, data and services to the
-                web directly over HTTP.
-            </p>
-            <p>
-                To learn more about ASP.NET Web API visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238195" title="ASP.NET Web API Website">http://asp.net/web-api</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET Web API.
-                If you have any questions about ASP.NET Web API, visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238196" title="ASP.NET Web API Forum">our forums</a>.
-            </p>
+            <table>
+                <tr>
+                    <td><button id="BtnGetAll">Refresh</button></td>
+                    <td>
+                        NPM Siswa :<input type="text" id ="txtcariId" style="width:100PX" /><br><button id="BtnCarId">Get Siswa</button>
+                    </td>
+                    <td>
+                        NPM Siswa :<input type="text" id ="txtdelId" style="width:100PX" /><br><button id="BtndelId">Hapus</button>
+                    </td>
+                    <td>
+                        <button id="Btnadd">Tambah</button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </section>
-    <section class="content-wrapper main-content clear-fix">
-        <h3>We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>Getting Started</h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
-            </li>
+    <ol class ="round">
+        <li>
+            <div id="divResult">
+                <h3>Response of Input</h3>
 
-            <li class="two">
-                <h5>Add NuGet packages and jump-start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245161">Learn more…</a>
-            </li>
-            <li class="three">
-                <h5>Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
-            </li>
-        </ol>
-    </section>
+            </div>
+        </li>
+    </ol>
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(function () {
+            $.getJSON('/api/Siswa', function (data) {
+                writedata(data)
+            });
+        });
+
+        $('#BtnCarId').click(function () {
+            var id = $('#txtcariId').val();
+            $.getJSON('/api/Siswa/' + id, function (data) {
+                if ((data != null)&&(id!='')) {
+                    var strresult = "<table><tr><th>ID</th><th>Nama</th><th>Umur</th><th>JK</th><th>Angkatan</th><th>IPK</th></tr>";
+                    strresult += "<tr><td>" + data.MhsId + "</td><td>" + data.NamaPertama + "</td><td>" + data.umur + "</td><td>" + data.jnsk + "</td><td>" + data.angkatan + "</td><td>" + data.ipk + "</td></tr></table>";
+                }
+                else
+                    strresult = "Not Found Any Data";
+                $('#divResult').html(strresult);
+            });
+        });
+
+        $('#BtnGetAll').click(function () {
+            $.getJSON('/api/Siswa', function (data) {
+                writedata(data)
+            });
+        });
+
+        $('#Btnadd').click(function () {
+            window.location = 'add';
+        });
+
+        $('#BtndelId').click(function () {
+            var id = $('#txtdelId').val()
+            $.ajax({
+                url: "/api/Siswa/"+id,
+                type: "DELETE",
+                contentType: "application/json,charset=utf-8",
+                success: function (data) {
+                    $('#divResult').append(data);
+                    refreshdata();
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        });
+
+        function deletedata(id) {
+                $.ajax({
+                    url: "/api/Siswa/" + id,
+                    type: "DELETE",
+                    contentType: "application/json,charset=utf-8",
+                    success: function (data) {
+                        $('#divResult').append(data);
+                        refreshdata();
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                });
+        }
+
+        function refreshdata() {
+            $.getJSON('/api/Siswa', function (data) {
+                writedata(data)
+            });
+        }
+
+        function writedata(data) {
+            var strresult = "<table><tr><th>ID</th><th>Nama</th><th>Umur</th><th>JK</th><th>Angkatan</th><th>IPK</th><th>Aksi</th></tr>";
+            $.each(data, function (i, data) {
+                strresult += "<tr><td>" + data.MhsId + "</td><td>" + data.NamaPertama + "</td><td>" + data.umur + "</td><td>" + data.jnsk + "</td><td>" + data.angkatan + "</td><td>" + data.ipk + "</td><td><button onclick='deletedata(" + data.MhsId + ")'>Hapus</button></td></tr>";
+            });
+            strresult += "</table>";
+            $('#divResult').html(strresult);
+        }
+    </script>
+}

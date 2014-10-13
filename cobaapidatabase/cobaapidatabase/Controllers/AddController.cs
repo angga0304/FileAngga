@@ -6,13 +6,21 @@ using System.Web.Mvc;
 
 namespace cobaapidatabase.Controllers
 {
-    public class HomeController : Controller
+    public class AddController : Controller
     {
+        //
+        // GET: /Add/
+
         public ActionResult Index()
         {
-            ViewBag.Message = "My Web API Consume";
-
             return View();
         }
+
+        public ActionResult edit(string id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
     }
 }

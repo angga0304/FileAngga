@@ -124,10 +124,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AddController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MahasiswaController.cs" />
     <Compile Include="Controllers\SiswaController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TambahController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -275,6 +277,13 @@
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Delete.cshtml" />
+    <Content Include="Views\Tambah\Index.cshtml" />
+    <Content Include="Views\Tambah\Details.cshtml" />
+    <Content Include="Views\Tambah\Create.cshtml" />
+    <Content Include="Views\Tambah\Edit.cshtml" />
+    <Content Include="Views\Tambah\Delete.cshtml" />
+    <Content Include="Views\Add\Index.cshtml" />
+    <Content Include="Views\Add\edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
