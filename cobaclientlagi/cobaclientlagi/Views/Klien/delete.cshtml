@@ -1,0 +1,68 @@
+﻿@model cobaclientlagi.Models.Mahasiswa
+
+@{
+    ViewBag.Title = "delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Mahasiswa</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MhsId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MhsId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NamaPertama)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NamaPertama)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NamaTerakhir)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NamaTerakhir)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.umur)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.umur)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.jnsk)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.jnsk)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.angkatan)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.angkatan)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ipk)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ipk)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "getall")
+    </p>
+}

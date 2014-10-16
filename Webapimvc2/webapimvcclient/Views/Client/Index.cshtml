@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<button id ="btnget" onclick="cariangga()">Cari</button>
+<div id="dr">(Result)</div>
+
+@section scripts{
+    <script src="Scripts/jquery-1.7.1.js"></script>
+    <script type="text/javascript">
+
+        
+        function cariangga() {
+            jQuery.support.cors = true;
+            $.ajax({
+                url: 'http://localhost:27160/api/Siswa/2010130010',
+                type: 'GET',
+                datatype : 'json',
+                success: function (data)
+                {
+                    try {
+                        $('#dr').append($.parseJSON(JSON.stringify(data)).NamaPertama);
+                    }
+                    catch (e){
+                        $('#dr').append(e.toString);
+                    }
+                }
+            });
+        }
+    </script>
+}

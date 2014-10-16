@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/api/Siswa">ASP.NET Web API</a></p>
+        </div>
+    </div>
+</header>
+
+<div id="body">
+    <section class="featured">
+        <div class="conten-wrapper">
+            <form id="Frmedit" method="post">
+                <h3>Edit Siswa</h3>
+                <p>
+                                <label for="MhsId">ID :</label>
+                                <input type="text" name="MhsId" id="txtId"/>
+                            </p>
+                            <p>
+                                <label for="NamaPertama">First Name :</label>
+                                <input type="text" name="NamaPertama" id="txtnp"/>
+                            </p>
+                            <p>
+                                <label for="NamaTerakhir">Last Name :</label>
+                                <input type="text" name="NamaTerakhir" id="txtnl"/>
+                            </p>
+                            <p>
+                                <label for="umur">Umur :</label>
+                                <input type="number" name="umur" id="txtumur"/>
+                            </p>
+                            <p>
+                                <label for="jnsk">Jenis Kelamin :</label>
+                                <input type="text" name="jnsk" id="txtjk"/>
+                            </p>
+                            <p>
+                                <label for="angkatan">Angkatan :</label>
+                                <input type="text" name="angkatan" id="txtangkatan"/>
+                            </p>
+                            <p>
+                                <label for="ipk">IPK :</label>
+                                <input type="text" name="ipk" id="txtipk"/>
+                            </p>
+                            <input type="button" id="UpdateSiswa" onclick="Update()" value="Update" />
+            </form>
+        </div>
+        <ol class ="round">
+        <li>
+            <div id="divResult">
+                <h3>Response of Input</h3>
+
+            </div>
+        </li>
+    </ol>
+    </section>
+</div>
+
+@section Scripts{
+ <script type="text/javascript">
+     $(function () {
+         var id = "@ViewBag.id";
+         $.getJSON('/api/Siswa/' + id, function (data) {
+             if ((data != null) && (id != '')) {
+                 $('#txtId').val(data.MhsId);
+                 $('#txtnp').val(data.NamaPertama);
+                 $('#txtnl').val(data.NamaTerakhir);
+                 $('#txtumur').val(data.umur);
+                 $('#txtjk').val(data.jnsk);
+                 $('#txtangkatan').val(data.angkatan);
+                 $('#txtipk').val(data.ipk);
+             }
+             else
+                var strresult = "Not Found Any Data";
+             $('#divResult').html(strresult);
+         });
+     });
+
+     function Update() {
+         var mahasiswa = {
+             MhsId: $('#txtId').val(),
+             NamaPertama: $('#txtnp').val(),
+             NamaTerakhir: $('#txtnl').val(),
+             umur: $('#txtumur').val(),
+             jnsk: $('#txtjk').val(),
+             angkatan: $('#txtangkatan').val(),
+             ipk: $('#txtipk').val()
+         };
+         $.ajax({
+             url: "/api/Siswa/" + $('#txtId').val(),
+             type: "PUT",
+             data: JSON.stringify(mahasiswa),
+             contentType: "application/json; charset=utf-8",
+             dataType: "json",
+             processData: true,
+             success: function (data) {
+                 window.location = "/";
+             },
+             error: function (x, y, z) {
+                 alert(x + '\n' + y + '\n' + z);
+             }
+         });
+     }
+</script>
+    }

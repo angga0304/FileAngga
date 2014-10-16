@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/api/Siswa">ASP.NET Web API</a></p>
+        </div>
+    </div>
+</header>
+
+<div id="body">
+    <section class="featured">
+        <div class="conten-wrapper">
+            <form id="Frmtambah" method="post">
+                <h3>Tambah Siswa Baru</h3>
+                <p>
+                                <label for="MhsId">ID :</label>
+                                <input type="text" name="MhsId"/>
+                            </p>
+                            <p>
+                                <label for="NamaPertama">First Name :</label>
+                                <input type="text" name="NamaPertama" />
+                            </p>
+                            <p>
+                                <label for="NamaTerakhir">First Name :</label>
+                                <input type="text" name="NamaTerakhir" />
+                            </p>
+                            <p>
+                                <label for="umur">Umur :</label>
+                                <input type="number" name="umur" />
+                            </p>
+                            <p>
+                                <label for="jnsk">Jenis Kelamin :</label>
+                                <input type="text" name="jnsk" />
+                            </p>
+                            <p>
+                                <label for="angkatan">Angkatan :</label>
+                                <input type="text" name="angkatan" />
+                            </p>
+                            <p>
+                                <label for="ipk">IPK :</label>
+                                <input type="text" name="ipk" />
+                            </p>
+                            <input type="button" id="saveSiswa" value="Save" />
+            </form>
+        </div>
+        <ol class ="round">
+        <li>
+            <div id="divResult">
+                <h3>Response of Input</h3>
+
+            </div>
+        </li>
+    </ol>
+    </section>
+</div>
+
+@section Scripts{
+ <script type="text/javascript">
+     $('#saveSiswa').click(function () {
+            $.post("/api/Siswa",
+                $('#Frmtambah').serialize(),
+                function (nilai) {
+                    window.location = "/";
+                },
+                "json"
+                );
+        });
+</script>
+    }
+

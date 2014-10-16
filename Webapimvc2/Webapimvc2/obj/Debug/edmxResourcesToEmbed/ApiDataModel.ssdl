@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbAnggaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DbAnggaModelStoreContainer">
+    <EntitySet Name="mahasiswa" EntityType="DbAnggaModel.Store.mahasiswa" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="mahasiswa">
+    <Key>
+      <PropertyRef Name="MhsId" />
+    </Key>
+    <Property Name="MhsId" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="NamaPertama" Type="nvarchar" MaxLength="50" />
+    <Property Name="NamaTerakhir" Type="nvarchar" MaxLength="50" />
+    <Property Name="umur" Type="int" />
+    <Property Name="jnsk" Type="nvarchar" MaxLength="50" />
+    <Property Name="angkatan" Type="nvarchar" MaxLength="50" />
+    <Property Name="ipk" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+</Schema>

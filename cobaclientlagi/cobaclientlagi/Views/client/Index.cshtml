@@ -1,0 +1,75 @@
+﻿<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div id="body">
+<button id ="btnget" onclick="cariangga()">Cari</button>
+<ol class ="round">
+        <li>
+            <div id="divResult">
+                <h3>Response of Input</h3>
+
+            </div>
+        </li>
+    </ol>
+</div>
+
+@section scripts{
+    <script src="Scripts/jquery-1.7.1.js"></script>
+    <script type="text/javascript">
+
+        
+        MyJSONPCallback = function (data) {
+            alert(data);
+        };
+
+        function cariangga() {
+            
+            jQuery.support.cors = true;
+            var x = $.getJSON('http://localhost:27160/api/Siswa/2010130010');
+            alert(x);
+            //$.ajax({
+            //    //data : JSON.stringify(data),
+            //    url: 'http://localhost:27160/api/Siswa/2010130010',
+            //    type: 'GET',
+            //    contentType: "application/json,charset=utf-8",
+            //    dataType: 'json',
+            //    async: false,
+            //    jsonpCallback : 'jsonCallback',
+            //    success: function (data) {
+            //        //writedata(data);
+            //        alert(data);
+            //    },
+            //    error: function (xhr,y,z) {
+            //        alert(y.responseText);
+            //    }
+            //});
+        }
+
+        function getdata() {
+            $.ajax({
+                url: 'http://localhost:27160/api/Siswa/',
+                type: 'GET',
+                contentType: "JSONP",
+                dataType: 'JSONP',
+                success: function (data) {
+                    writedata(data);
+                }
+            });
+        }
+
+        function writedata(data) {
+            var strresult = "<table><tr><th>ID</th><th>Nama</th><th>Umur</th><th>JK</th><th>Angkatan</th><th>IPK</th></tr>";
+            $.each(data, function (i, data) {
+                strresult += "<tr><td>" + data.MhsId + "</td><td>" + data.NamaPertama + "</td><td>" + data.umur + "</td><td>" + data.jnsk + "</td><td>" + data.angkatan + "</td><td>" + data.ipk + "</td></tr>";
+            });
+            strresult += "</table>";
+            $('#divResult').html(strresult);
+        }
+
+    </script>
+}
+

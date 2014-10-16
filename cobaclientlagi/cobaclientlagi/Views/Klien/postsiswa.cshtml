@@ -1,0 +1,84 @@
+﻿@model cobaclientlagi.Models.Mahasiswa
+
+@{
+    ViewBag.Title = "postsiswa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>postsiswa</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Mahasiswa</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MhsId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MhsId)
+            @Html.ValidationMessageFor(model => model.MhsId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NamaPertama)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NamaPertama)
+            @Html.ValidationMessageFor(model => model.NamaPertama)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NamaTerakhir)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NamaTerakhir)
+            @Html.ValidationMessageFor(model => model.NamaTerakhir)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.umur)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.umur)
+            @Html.ValidationMessageFor(model => model.umur)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.jnsk)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.jnsk)
+            @Html.ValidationMessageFor(model => model.jnsk)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.angkatan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.angkatan)
+            @Html.ValidationMessageFor(model => model.angkatan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ipk)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ipk)
+            @Html.ValidationMessageFor(model => model.ipk)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

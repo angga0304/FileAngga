@@ -1,0 +1,101 @@
+﻿@model IEnumerable<cobaclientlagi.Models.Mahasiswa>
+
+@{
+    ViewBag.Title = "getall";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header>
+    <div class="content-wrapper">
+
+            <p class="site-title">
+                ASP.NET Web API
+            </p>
+
+    </div>
+</header>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Home Page</h1>
+                <h2>Web API Test Consume</h2>
+            </hgroup>
+            <table>
+                <tr>
+                    <td><button>Refresh</button></td>
+                    <td>
+                        NPM Siswa :<input type="text" id ="txtcariId" style="width:100PX" /><br><button id="BtnCarId">Get Siswa</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <ol class="round">
+        <li>
+            <div>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MhsId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NamaPertama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NamaTerakhir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.umur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jnsk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.angkatan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ipk)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MhsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamaPertama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamaTerakhir)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.umur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jnsk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.angkatan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ipk)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "edit", new {id = item.MhsId /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Index", new {id = item.MhsId /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "delete", new {id = item.MhsId /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Create New", "postsiswa")
+</p>
+            </div>
+        </li>
+    </ol>
+</div>
+

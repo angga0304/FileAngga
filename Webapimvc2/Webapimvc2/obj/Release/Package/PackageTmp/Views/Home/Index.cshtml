@@ -1,0 +1,124 @@
+﻿<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/api/Siswa">ASP.NET Web API</a></p>
+        </div>
+    </div>
+</header>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class ="title">
+                <h1>Home Page</h1>
+                <h2> Web Api Test Consume</h2>
+            </hgroup>
+            <table>
+                <tr>
+                    <td><button id="BtnGetAll">Refresh</button></td>
+                    <td>
+                        NPM Siswa :<input type="text" id ="txtcariId" style="width:100PX" /><br><button id="BtnCarId">Get Siswa</button>
+                    </td>
+                    <td>
+                        NPM Siswa :<input type="text" id ="txtdelId" style="width:100PX" /><br><button id="BtndelId">Hapus</button>
+                    </td>
+                    <td>
+                        <button id="Btnadd">Tambah</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <ol class ="round">
+        <li>
+            <div id="divResult">
+                <h3>Response of Input</h3>
+
+            </div>
+        </li>
+    </ol>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(function () {
+            $.getJSON('/api/Siswa', function (data) {
+                writedata(data);
+            });
+        });
+
+        $('#BtnCarId').click(function () {
+            var id = $('#txtcariId').val();
+            $.getJSON('/api/Siswa/' + id, function (data) {
+                if ((data != null) && (id != '')) {
+                    var strresult = "<table><tr><th>ID</th><th>Nama</th><th>Umur</th><th>JK</th><th>Angkatan</th><th>IPK</th></tr>";
+                    strresult += "<tr><td>" + data.MhsId + "</td><td>" + data.NamaPertama + "</td><td>" + data.umur + "</td><td>" + data.jnsk + "</td><td>" + data.angkatan + "</td><td>" + data.ipk + "</td><td><button onclick='deletedata(" + data.MhsId + ")'>Hapus</button></td><td><button onclick='editdata(" + data.MhsId + ")'>Edit</button></td><</tr></table>";
+                }
+                else
+                    strresult = "Not Found Any Data";
+                $('#divResult').html(strresult);
+            });
+        });
+
+        $('#BtnGetAll').click(function () {
+            $.getJSON('/api/Siswa', function (data) {
+                writedata(data)
+            });
+        });
+
+        $('#Btnadd').click(function () {
+            window.location = 'Action/add';
+        });
+
+        $('#BtndelId').click(function () {
+            var id = $('#txtdelId').val()
+            $.ajax({
+                url: "/api/Siswa/" + id,
+                type: "DELETE",
+                contentType: "application/json,charset=utf-8",
+                success: function (data) {
+                    $('#divResult').append(data);
+                    refreshdata();
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        });
+
+        function deletedata(id) {
+            $.ajax({
+                url: "/api/Siswa/" + id,
+                type: "DELETE",
+                contentType: "application/json,charset=utf-8",
+                success: function (data) {
+                    $('#divResult').append(data);
+                    refreshdata();
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
+        function refreshdata() {
+            $.getJSON('/api/Siswa', function (data) {
+                writedata(data)
+            });
+        }
+
+        function editdata(id) {
+            window.location = "Action/edit/" + id;
+        }
+
+        function writedata(data) {
+            var strresult = "<table><tr><th>ID</th><th>Nama</th><th>Umur</th><th>JK</th><th>Angkatan</th><th>IPK</th><th>Aksi</th></tr>";
+            $.each(data, function (i, data) {
+                strresult += "<tr><td>" + data.MhsId + "</td><td>" + data.NamaPertama + "</td><td>" + data.umur + "</td><td>" + data.jnsk + "</td><td>" + data.angkatan + "</td><td>" + data.ipk + "</td><td><button onclick='deletedata(" + data.MhsId + ")'>Hapus</button></td><td><button onclick='editdata(" + data.MhsId + ")'>Edit</button></td></tr>";
+            });
+            strresult += "</table>";
+            $('#divResult').html(strresult);
+        }
+    </script>
+}
