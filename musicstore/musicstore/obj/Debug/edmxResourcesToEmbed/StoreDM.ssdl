@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbAnggaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DbAnggaModelStoreContainer">
+    <EntitySet Name="category" EntityType="DbAnggaModel.Store.category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="credit" EntityType="DbAnggaModel.Store.credit" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="item" EntityType="DbAnggaModel.Store.item" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Member" EntityType="DbAnggaModel.Store.Member" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Trans_d" EntityType="DbAnggaModel.Store.Trans_d" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Trans_M" EntityType="DbAnggaModel.Store.Trans_M" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="DbAnggaModel.Store.users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk_category" Association="DbAnggaModel.Store.fk_category">
+      <End Role="category" EntitySet="category" />
+      <End Role="item" EntitySet="item" />
+    </AssociationSet>
+    <AssociationSet Name="fk_item" Association="DbAnggaModel.Store.fk_item">
+      <End Role="item" EntitySet="item" />
+      <End Role="credit" EntitySet="credit" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Item_trans" Association="DbAnggaModel.Store.fk_Item_trans">
+      <End Role="item" EntitySet="item" />
+      <End Role="Trans_d" EntitySet="Trans_d" />
+    </AssociationSet>
+    <AssociationSet Name="fk_member" Association="DbAnggaModel.Store.fk_member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="credit" EntitySet="credit" />
+    </AssociationSet>
+    <AssociationSet Name="fk_member_trans" Association="DbAnggaModel.Store.fk_member_trans">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Trans_M" EntitySet="Trans_M" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Trans" Association="DbAnggaModel.Store.fk_Trans">
+      <End Role="Trans_M" EntitySet="Trans_M" />
+      <End Role="Trans_d" EntitySet="Trans_d" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="credit">
+    <Key>
+      <PropertyRef Name="creditId" />
+    </Key>
+    <Property Name="creditId" Type="int" Nullable="false" />
+    <Property Name="MemberId" Type="int" />
+    <Property Name="ItemId" Type="int" />
+    <Property Name="creditke" Type="int" />
+    <Property Name="creditDate" Type="date" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Category" Type="int" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EventAct" Type="nvarchar" MaxLength="50" />
+    <Property Name="even" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="int" Nullable="false" />
+    <Property Name="MemberName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberAdress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Memberphone" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Trans_d">
+    <Key>
+      <PropertyRef Name="TransId" />
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="TransId" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="qnt" Type="int" />
+    <Property Name="pricemethod" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Trans_M">
+    <Key>
+      <PropertyRef Name="TransId" />
+    </Key>
+    <Property Name="TransId" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TransaDate" Type="date" />
+    <Property Name="MemberId" Type="int" />
+    <Property Name="TotalTrans" Type="decimal" Precision="9" Scale="2" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="10" />
+    <Property Name="userpassword" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="fk_category">
+    <End Role="category" Type="DbAnggaModel.Store.category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="item" Type="DbAnggaModel.Store.item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="item">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_item">
+    <End Role="item" Type="DbAnggaModel.Store.item" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="credit" Type="DbAnggaModel.Store.credit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="credit">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Item_trans">
+    <End Role="item" Type="DbAnggaModel.Store.item" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Trans_d" Type="DbAnggaModel.Store.Trans_d" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="Trans_d">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_member">
+    <End Role="Member" Type="DbAnggaModel.Store.Member" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="credit" Type="DbAnggaModel.Store.credit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="credit">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_member_trans">
+    <End Role="Member" Type="DbAnggaModel.Store.Member" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Trans_M" Type="DbAnggaModel.Store.Trans_M" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Trans_M">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Trans">
+    <End Role="Trans_M" Type="DbAnggaModel.Store.Trans_M" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Trans_d" Type="DbAnggaModel.Store.Trans_d" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trans_M">
+        <PropertyRef Name="TransId" />
+      </Principal>
+      <Dependent Role="Trans_d">
+        <PropertyRef Name="TransId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

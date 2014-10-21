@@ -1,0 +1,59 @@
+﻿@model IEnumerable<musicstore.category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <img width="70PX" height="70PX" src="../Images/logo.png" />
+                MVC Music Store
+                </p>
+        </div>
+        
+    </div>
+    <br />
+    <div class="content-wrapper">
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Member","Index","Member")</li>
+                <li>@Html.ActionLink("Item","Index","Item")</li>
+                @*<li>@Html.ActionLink("Category","Index","Category")</li>*@
+                <li>@Html.ActionLink("Credit","Index","Credit")</li>
+                <li>@Html.ActionLink("Transaction","indexx","TransM")</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<h2>Index</h2>
+<div id="body">
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CategoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId })
+        </td>
+    </tr>
+}
+
+</table>
+</div>

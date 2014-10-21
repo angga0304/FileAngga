@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MusicStoreClient.Models.credit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "postcredit")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.creditId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.creditId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.creditId })  |
+            @Html.ActionLink("Bayar", "bayarcredit", new { id=item.creditId })
+        </td>
+    </tr>
+}
+
+</table>

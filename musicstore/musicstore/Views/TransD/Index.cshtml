@@ -1,0 +1,51 @@
+﻿@model IEnumerable<musicstore.Trans_d>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Trans_M.TransId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pricemethod)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trans_M.TransId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pricemethod)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id =item.TransId,  brg= item.ItemId/* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { id =item.TransId,  brg= item.ItemId/* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,50 @@
+﻿@model musicstore.item
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>item</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.category1.CategoryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.category1.CategoryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ItemName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ItemName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventAct)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventAct)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.even)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.even)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ItemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

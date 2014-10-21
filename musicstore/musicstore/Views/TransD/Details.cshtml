@@ -1,0 +1,43 @@
+﻿@model musicstore.Trans_d
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Trans_d</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Trans_M.TransId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Trans_M.TransId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.item.ItemName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.item.ItemName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.qnt)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.qnt)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.pricemethod)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.pricemethod)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id= Model.TransId , brg = Model.ItemId/* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

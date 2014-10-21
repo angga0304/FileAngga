@@ -1,0 +1,76 @@
+﻿@model IEnumerable<musicstore.credit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <img width="70PX" height="70PX" src="../Images/logo.png" />
+                MVC Music Store
+                </p>
+        </div>
+        
+    </div>
+    <br />
+    <div class="content-wrapper">
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Member","Index","Member")</li>
+                <li>@Html.ActionLink("Item","Index","Item")</li>
+                <li>@Html.ActionLink("Category","Index","Category")</li>
+                @*<li>@Html.ActionLink("Credit","Index","Credit")</li>*@
+                <li>@Html.ActionLink("Transaction","indexx","TransM")</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member.MemberName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.creditId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.creditId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.creditId })
+        </td>
+    </tr>
+}
+
+</table>

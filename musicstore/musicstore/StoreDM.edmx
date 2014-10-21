@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DbAnggaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DbAnggaModelStoreContainer">
+          <EntitySet Name="category" EntityType="DbAnggaModel.Store.category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="credit" EntityType="DbAnggaModel.Store.credit" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="item" EntityType="DbAnggaModel.Store.item" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Member" EntityType="DbAnggaModel.Store.Member" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Trans_d" EntityType="DbAnggaModel.Store.Trans_d" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Trans_M" EntityType="DbAnggaModel.Store.Trans_M" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="users" EntityType="DbAnggaModel.Store.users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_category" Association="DbAnggaModel.Store.fk_category">
+            <End Role="category" EntitySet="category" />
+            <End Role="item" EntitySet="item" />
+          </AssociationSet>
+          <AssociationSet Name="fk_item" Association="DbAnggaModel.Store.fk_item">
+            <End Role="item" EntitySet="item" />
+            <End Role="credit" EntitySet="credit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Item_trans" Association="DbAnggaModel.Store.fk_Item_trans">
+            <End Role="item" EntitySet="item" />
+            <End Role="Trans_d" EntitySet="Trans_d" />
+          </AssociationSet>
+          <AssociationSet Name="fk_member" Association="DbAnggaModel.Store.fk_member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="credit" EntitySet="credit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_member_trans" Association="DbAnggaModel.Store.fk_member_trans">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Trans_M" EntitySet="Trans_M" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Trans" Association="DbAnggaModel.Store.fk_Trans">
+            <End Role="Trans_M" EntitySet="Trans_M" />
+            <End Role="Trans_d" EntitySet="Trans_d" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="credit">
+          <Key>
+            <PropertyRef Name="creditId" />
+          </Key>
+          <Property Name="creditId" Type="int" Nullable="false" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="creditke" Type="int" />
+          <Property Name="creditDate" Type="date" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Category" Type="int" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventAct" Type="nvarchar" MaxLength="50" />
+          <Property Name="even" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MemberAdress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memberphone" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Trans_d">
+          <Key>
+            <PropertyRef Name="TransId" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="TransId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="qnt" Type="int" />
+          <Property Name="pricemethod" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Trans_M">
+          <Key>
+            <PropertyRef Name="TransId" />
+          </Key>
+          <Property Name="TransId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TransaDate" Type="date" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="TotalTrans" Type="decimal" Precision="9" Scale="2" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="int" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="10" />
+          <Property Name="userpassword" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="fk_category">
+          <End Role="category" Type="DbAnggaModel.Store.category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item" Type="DbAnggaModel.Store.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_item">
+          <End Role="item" Type="DbAnggaModel.Store.item" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="credit" Type="DbAnggaModel.Store.credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="credit">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Item_trans">
+          <End Role="item" Type="DbAnggaModel.Store.item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Trans_d" Type="DbAnggaModel.Store.Trans_d" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Trans_d">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_member">
+          <End Role="Member" Type="DbAnggaModel.Store.Member" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="credit" Type="DbAnggaModel.Store.credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="credit">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_member_trans">
+          <End Role="Member" Type="DbAnggaModel.Store.Member" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Trans_M" Type="DbAnggaModel.Store.Trans_M" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="Trans_M">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Trans">
+          <End Role="Trans_M" Type="DbAnggaModel.Store.Trans_M" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Trans_d" Type="DbAnggaModel.Store.Trans_d" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trans_M">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Trans_d">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbAnggaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DbAnggaEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="DbAnggaModel.category" />
+          <EntitySet Name="credits" EntityType="DbAnggaModel.credit" />
+          <EntitySet Name="items" EntityType="DbAnggaModel.item" />
+          <EntitySet Name="Members" EntityType="DbAnggaModel.Member" />
+          <EntitySet Name="Trans_d" EntityType="DbAnggaModel.Trans_d" />
+          <EntitySet Name="Trans_M" EntityType="DbAnggaModel.Trans_M" />
+          <EntitySet Name="users" EntityType="DbAnggaModel.user" />
+          <AssociationSet Name="fk_category" Association="DbAnggaModel.fk_category">
+            <End Role="category" EntitySet="categories" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="fk_item" Association="DbAnggaModel.fk_item">
+            <End Role="item" EntitySet="items" />
+            <End Role="credit" EntitySet="credits" />
+          </AssociationSet>
+          <AssociationSet Name="fk_member" Association="DbAnggaModel.fk_member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="credit" EntitySet="credits" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Item_trans" Association="DbAnggaModel.fk_Item_trans">
+            <End Role="item" EntitySet="items" />
+            <End Role="Trans_d" EntitySet="Trans_d" />
+          </AssociationSet>
+          <AssociationSet Name="fk_member_trans" Association="DbAnggaModel.fk_member_trans">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Trans_M" EntitySet="Trans_M" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Trans" Association="DbAnggaModel.fk_Trans">
+            <End Role="Trans_M" EntitySet="Trans_M" />
+            <End Role="Trans_d" EntitySet="Trans_d" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="items" Relationship="DbAnggaModel.fk_category" FromRole="category" ToRole="item" />
+        </EntityType>
+        <EntityType Name="credit">
+          <Key>
+            <PropertyRef Name="creditId" />
+          </Key>
+          <Property Name="creditId" Type="Int32" Nullable="false" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="creditke" Type="Int32" />
+          <Property Name="creditDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="item" Relationship="DbAnggaModel.fk_item" FromRole="credit" ToRole="item" />
+          <NavigationProperty Name="Member" Relationship="DbAnggaModel.fk_member" FromRole="credit" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="ItemName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EventAct" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="even" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="category1" Relationship="DbAnggaModel.fk_category" FromRole="item" ToRole="category" />
+          <NavigationProperty Name="credits" Relationship="DbAnggaModel.fk_item" FromRole="item" ToRole="credit" />
+          <NavigationProperty Name="Trans_d" Relationship="DbAnggaModel.fk_Item_trans" FromRole="item" ToRole="Trans_d" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="MemberName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MemberAdress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Memberphone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="credits" Relationship="DbAnggaModel.fk_member" FromRole="Member" ToRole="credit" />
+          <NavigationProperty Name="Trans_M" Relationship="DbAnggaModel.fk_member_trans" FromRole="Member" ToRole="Trans_M" />
+        </EntityType>
+        <EntityType Name="Trans_d">
+          <Key>
+            <PropertyRef Name="TransId" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="TransId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="qnt" Type="Int32" />
+          <Property Name="pricemethod" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="item" Relationship="DbAnggaModel.fk_Item_trans" FromRole="Trans_d" ToRole="item" />
+          <NavigationProperty Name="Trans_M" Relationship="DbAnggaModel.fk_Trans" FromRole="Trans_d" ToRole="Trans_M" />
+        </EntityType>
+        <EntityType Name="Trans_M">
+          <Key>
+            <PropertyRef Name="TransId" />
+          </Key>
+          <Property Name="TransId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TransaDate" Type="DateTime" Precision="0" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="TotalTrans" Type="Decimal" Precision="9" Scale="2" />
+          <NavigationProperty Name="Member" Relationship="DbAnggaModel.fk_member_trans" FromRole="Trans_M" ToRole="Member" />
+          <NavigationProperty Name="Trans_d" Relationship="DbAnggaModel.fk_Trans" FromRole="Trans_M" ToRole="Trans_d" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="userpassword" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="fk_category">
+          <End Role="category" Type="DbAnggaModel.category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item" Type="DbAnggaModel.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_item">
+          <End Role="item" Type="DbAnggaModel.item" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="credit" Type="DbAnggaModel.credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="credit">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_member">
+          <End Role="Member" Type="DbAnggaModel.Member" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="credit" Type="DbAnggaModel.credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="credit">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Item_trans">
+          <End Role="item" Type="DbAnggaModel.item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Trans_d" Type="DbAnggaModel.Trans_d" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Trans_d">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_member_trans">
+          <End Role="Member" Type="DbAnggaModel.Member" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Trans_M" Type="DbAnggaModel.Trans_M" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="Trans_M">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Trans">
+          <End Role="Trans_M" Type="DbAnggaModel.Trans_M" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Trans_d" Type="DbAnggaModel.Trans_d" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trans_M">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Trans_d">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbAnggaModelStoreContainer" CdmEntityContainer="DbAnggaEntities">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="DbAnggaModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="credits">
+            <EntityTypeMapping TypeName="DbAnggaModel.credit">
+              <MappingFragment StoreEntitySet="credit">
+                <ScalarProperty Name="creditId" ColumnName="creditId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="creditke" ColumnName="creditke" />
+                <ScalarProperty Name="creditDate" ColumnName="creditDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="DbAnggaModel.item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="EventAct" ColumnName="EventAct" />
+                <ScalarProperty Name="even" ColumnName="even" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="DbAnggaModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MemberAdress" ColumnName="MemberAdress" />
+                <ScalarProperty Name="Memberphone" ColumnName="Memberphone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trans_d">
+            <EntityTypeMapping TypeName="DbAnggaModel.Trans_d">
+              <MappingFragment StoreEntitySet="Trans_d">
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="qnt" ColumnName="qnt" />
+                <ScalarProperty Name="pricemethod" ColumnName="pricemethod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trans_M">
+            <EntityTypeMapping TypeName="DbAnggaModel.Trans_M">
+              <MappingFragment StoreEntitySet="Trans_M">
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="TransaDate" ColumnName="TransaDate" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="TotalTrans" ColumnName="TotalTrans" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DbAnggaModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

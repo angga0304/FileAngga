@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<musicstore.Models.TransMasterDetailModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <img width="70PX" height="70PX" src="../Images/logo.png" />
+                @Html.ActionLink("MVC Music Store","Index","Home")
+                </p>
+        </div>
+        
+    </div>
+    <br />
+    
+    <div class="content-wrapper">
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Member","Index","Member")</li>
+                <li>@Html.ActionLink("Item","Index","Item")</li>
+                <li>@Html.ActionLink("Category","Index","Category")</li>
+                <li>@Html.ActionLink("Credit","Index","Credit")</li>
+                @*<li>@Html.ActionLink("Transaction","Index","TransM")</li>*@
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="body">
+@foreach(var itemmst in Model)
+    {
+<section class="featured">
+    <div class="content-wrapper">
+    <h4>Trans ID : @itemmst.selectedTransM.TransId</h4>
+    <h4> Tanggal : @itemmst.selectedTransM.TransaDate </h4>
+    <h4> Member : @itemmst.TransMMember </h4>
+    @Html.ActionLink("Edit", "Edit/"+ itemmst.selectedTransM.TransId, "TransM")
+        </div>
+</section>
+<br />
+<h2> List of Item </h2>
+<table>
+    <tr>
+        <th> Item </th>
+        <th> Jumlah </th>
+        <th> Metode </th>
+    </tr>
+    @*@{ var lisjoin = (from d in itemmst.transdetails
+                          join b in ViewBag.barang
+                              on b.ItemId equals d.ItemId
+                          select new{
+                            d.TransId,
+                            d.qnt,
+                            d.pricemethod,
+                            d.ItemId,
+                            b.ItemName,
+                            b.Price 
+                          }).ToList();
+                       }*@
+    @foreach (var item in itemmst.transdetails)
+    {
+        <tr>
+            <td> @item.ItemId </td>
+            <td> @item.qnt </td>
+            <td> @item.pricemethod </td>
+            <td> @Html.ActionLink("Edit", "Edit/"+item.TransId+"/"+item.ItemId, "TransD") </td>
+        </tr>
+    }
+</table>
+    }
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new {page}))
+    </div>

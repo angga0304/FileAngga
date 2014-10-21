@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MusicStoreClient.Models.Member>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "SignUp")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Memberphone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Memberphone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MemberId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MemberId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MemberId })
+        </td>
+    </tr>
+}
+
+</table>

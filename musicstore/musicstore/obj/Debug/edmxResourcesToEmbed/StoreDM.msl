@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbAnggaModelStoreContainer" CdmEntityContainer="DbAnggaEntities">
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="DbAnggaModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="credits">
+      <EntityTypeMapping TypeName="DbAnggaModel.credit">
+        <MappingFragment StoreEntitySet="credit">
+          <ScalarProperty Name="creditId" ColumnName="creditId" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="creditke" ColumnName="creditke" />
+          <ScalarProperty Name="creditDate" ColumnName="creditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="items">
+      <EntityTypeMapping TypeName="DbAnggaModel.item">
+        <MappingFragment StoreEntitySet="item">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="EventAct" ColumnName="EventAct" />
+          <ScalarProperty Name="even" ColumnName="even" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="DbAnggaModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+          <ScalarProperty Name="MemberAdress" ColumnName="MemberAdress" />
+          <ScalarProperty Name="Memberphone" ColumnName="Memberphone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trans_d">
+      <EntityTypeMapping TypeName="DbAnggaModel.Trans_d">
+        <MappingFragment StoreEntitySet="Trans_d">
+          <ScalarProperty Name="TransId" ColumnName="TransId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="qnt" ColumnName="qnt" />
+          <ScalarProperty Name="pricemethod" ColumnName="pricemethod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trans_M">
+      <EntityTypeMapping TypeName="DbAnggaModel.Trans_M">
+        <MappingFragment StoreEntitySet="Trans_M">
+          <ScalarProperty Name="TransId" ColumnName="TransId" />
+          <ScalarProperty Name="TransaDate" ColumnName="TransaDate" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="TotalTrans" ColumnName="TotalTrans" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="DbAnggaModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

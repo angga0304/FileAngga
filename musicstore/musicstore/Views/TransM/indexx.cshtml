@@ -1,0 +1,95 @@
+﻿@model PagedList.IPagedList<musicstore.Trans_M>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "indexx";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <img width="70PX" height="70PX" src="../Images/logo.png" />
+                MVC Music Store
+                </p>
+        </div>
+        
+    </div>
+    <br />
+    <div class="content-wrapper">
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Member","Index","Member")</li>
+                <li>@Html.ActionLink("Item","Index","Item")</li>
+                <li>@Html.ActionLink("Category","Index","Category")</li>
+                <li>@Html.ActionLink("Credit","Index","Credit")</li>
+               
+            </ul>
+        </nav>
+    </div>
+</header>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model)
+{   
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => item.TransId)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransId)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => item.TransaDate)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransaDate)
+        </td>
+    </tr>
+    @*<tr>
+        <th>
+            @Html.DisplayNameFor(model => item.Member.MemberName)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member.MemberName)
+        </td>
+    </tr>*@
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => item.TotalTrans)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalTrans)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.TransId  }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TransId })
+        </td>
+    </tr>
+</table>
+<h3>Details of Transaction</h3>
+<div id="detailtrans">
+    @{Html.RenderAction("indexx", "TransD", new { id = item.TransId });}
+</div>
+}
+    
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("indexx", 
+    new {page}))
+       

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<musicstore.Member>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <img width="70PX" height="70PX" src="../Images/logo.png" />
+                MVC Music Store
+                </p>
+        </div>
+        
+    </div>
+    <br />
+    <div class="content-wrapper">
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Item","Index","Item")</li>
+                <li>@Html.ActionLink("Category","Index","Category")</li>
+                <li>@Html.ActionLink("Credit","Index","Credit")</li>
+                <li>@Html.ActionLink("Transaction","indexx","TransM")</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<h2>Index</h2>
+<section class="featured">
+    <div class="content-wrapper">
+        <table>
+            <tr>
+                <td>@Html.ActionLink("Back To List","Index")</td>
+                <th>By Id</th>
+                <td><input type="text" id="txtsearch" /></td>
+                <td><input type="button" id="btnsearch" value="View Credit" onclick="cariMember()" /></td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Memberphone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Memberphone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MemberId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MemberId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MemberId })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@section scripts{
+    <script type="text/javascript">
+        function cariMember() {
+            var txtsearch = $('#txtsearch').val();
+            if (txtsearch != '') {
+                window.location = "ViewCredit/" + txtsearch;
+            }
+        }
+    </script>
+}

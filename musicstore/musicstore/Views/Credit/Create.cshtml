@@ -1,0 +1,59 @@
+﻿@model musicstore.credit
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>credit</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberId, "Member")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("MemberId", String.Empty)
+            @Html.ValidationMessageFor(model => model.MemberId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ItemId, "item")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ItemId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ItemId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.creditke)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.creditke)
+            @Html.ValidationMessageFor(model => model.creditke)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.creditDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.creditDate)
+            @Html.ValidationMessageFor(model => model.creditDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

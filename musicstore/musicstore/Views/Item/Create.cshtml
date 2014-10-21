@@ -1,0 +1,67 @@
+﻿@model musicstore.item
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>item</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Category, "category1")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Category", String.Empty)
+            @Html.ValidationMessageFor(model => model.Category)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ItemName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ItemName)
+            @Html.ValidationMessageFor(model => model.ItemName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EventAct)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EventAct)
+            @Html.ValidationMessageFor(model => model.EventAct)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.even)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.even)
+            @Html.ValidationMessageFor(model => model.even)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

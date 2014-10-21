@@ -1,0 +1,77 @@
+﻿@model musicstore.Member
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <img width="70PX" height="70PX" src="../Images/logo.png" />
+                MVC Music Store
+                </p>
+        </div>
+        
+    </div>
+    <br />
+    <div class="content-wrapper">
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Item","Index","Item")</li>
+                <li>@Html.ActionLink("Category","Index","Category")</li>
+                <li>@Html.ActionLink("Credit","Index","Credit")</li>
+                <li>@Html.ActionLink("Transaction","indexx","TransM")</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<h2>Index</h2>
+<section class="featured">
+    <div class="content-wrapper">
+        <table>
+            <tr>
+                <td>@Html.ActionLink("Back To List","Index")</td>
+                <th>By Id</th>
+                <td><input type="text" id="txtsearch" /></td>
+                <td><input type="button" id="btnsearch" value="View Credit" onclick="cariMember()" /></td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<table>
+    @*<legend>Member</legend>*@
+
+    <tr>
+         <th> @Html.DisplayNameFor(model => model.MemberName)    :</th>
+        <td> @Html.DisplayFor(model => model.MemberName)</td>
+    </tr>
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.MemberAdress)  :</th>
+        <td> @Html.DisplayFor(model => model.MemberAdress)</td>
+    </tr>
+    <tr>
+         <th> @Html.DisplayNameFor(model => model.Memberphone)   :</th>
+         <td> @Html.DisplayFor(model => model.Memberphone)</td>
+    </tr>
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.MemberId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<div id="ListCredit">
+    @{Html.RenderAction("IndexPartial", "Credit", new { id = Model.MemberId });}
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function cariMember() {
+            var txtsearch = $('#txtsearch').val();
+            if (txtsearch != '') {
+                window.location = "ViewCredit/" + txtsearch;
+            }
+            else {
+                window.location = "Index";
+            }
+        }
+    </script>
+}

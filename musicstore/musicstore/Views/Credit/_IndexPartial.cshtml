@@ -1,0 +1,51 @@
+﻿@model IEnumerable<musicstore.credit>
+
+@{
+    if(ViewBag.nul)
+  {
+   <h3>There is no Credit Data in This Member</h3>   
+  }
+  else{
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.item.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.creditId }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.creditId }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id=item.creditId })
+        </td>
+    </tr>
+}
+
+</table>
+}
+}

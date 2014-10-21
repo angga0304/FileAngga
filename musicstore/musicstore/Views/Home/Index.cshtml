@@ -1,0 +1,33 @@
+﻿<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <img width="70PX" height="70PX" src="../Images/logo.png" />
+                MVC Music Store
+                </p>
+        </div>
+        
+    </div>
+    <br />
+    <div class="content-wrapper">
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("Member","Index","Member")</li>
+                <li>@Html.ActionLink("Item","Index","Item")</li>
+                <li>@Html.ActionLink("Category","Index","Category")</li>
+                <li>@Html.ActionLink("Credit","Index","Credit")</li>
+                <li>@Html.ActionLink("Transaction","indexx","TransM")</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="body">
+    <section class="content-wrapper main-content clear-fix">
+        <h2>Welcome to MVC Music Store</h2>
+        <ol class="round">
+            <li>
+                <img src="../Images/store.jpg" />
+            </li>
+        </ol>
+    </section>
+</div>

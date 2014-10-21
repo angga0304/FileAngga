@@ -1,0 +1,58 @@
+﻿@model IEnumerable<musicstore.Trans_d>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table>
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TransId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.item.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pricemethod)
+        </th>
+        <th>Total</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.TransId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pricemethod)
+        </td>
+        @{ var total = @item.qnt * @item.item.Price;
+           if (item.pricemethod.Equals("Free"))
+               total = 0;
+         }
+        <td>@total</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.TransId, brg = item.ItemId }) |
+            
+            @Html.ActionLink("Delete", "Delete", new { id = item.TransId, brg = item.ItemId })
+        </td>
+    </tr>
+}
+
+</table>
