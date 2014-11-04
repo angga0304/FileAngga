@@ -1,0 +1,61 @@
+﻿@model ResidentsDuesApp.Person
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <div class="modal-body">
+        <table>
+            <tr>
+                <td> @Html.LabelFor(model => model.PeopleID, new { style = "font-size:20px" }) </td>
+                <td style="width:50px; text-align:center"> : </td>
+                <td>
+                    @Html.TextBoxFor(model => model.PeopleID, new { @class="form-control",disabled="", style = "width:200px "})
+                    @Html.HiddenFor(model => model.PeopleID)
+                </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.IDCard, new { style = "font-size:20px" }) </td>
+                <td style="width:50px; text-align:center"> : </td>
+                <td>
+                    @Html.TextBoxFor(model => model.IDCard, new { @class="form-control", @placeholder="Your ID Card", style = "width:200px "})
+                    @Html.ValidationMessageFor(model => model.IDCard)
+                </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.Name, new { style = "font-size:20px" }) </td>
+                <td style="width:50px; text-align:center"> : </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Name, new { @class="form-control", @placeholder="Your Name", style = "width:250px "})
+                    @Html.ValidationMessageFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.Age, new { style = "font-size:20px" }) </td>
+                <td style="width:50px; text-align:center"> : </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Age, new { @class="form-control", @placeholder="0-99", style = "width:100px "})
+                    @Html.ValidationMessageFor(model => model.Age)
+                </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.HouseID, "House", new { style = "font-size:20px" }) </td>
+                <td style="width:50px; text-align:center"> : </td>
+                <td>
+                    @Html.DropDownList("HouseID", (IEnumerable<SelectListItem>)ViewBag.HouseID, new {@class="form-control"})
+                    @Html.ValidationMessageFor(model => model.HouseID)
+                </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.BirthDate, new { style = "font-size:20px" }) </td>
+                <td style="width:50px; text-align:center"> : </td>
+                <td>
+                    @Html.TextBoxFor(model => model.BirthDate, new { @class="form-control", @placeholder="d/m/yyyy", style = "width:200px "})
+                    @Html.ValidationMessageFor(model => model.BirthDate)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <input type="submit" class="btn btn-primary" value="Save Change" id="btnSave" />
+    </div>
+}

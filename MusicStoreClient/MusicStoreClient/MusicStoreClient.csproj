@@ -167,6 +167,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\TransDController.cs" />
+    <Compile Include="Controllers\TransMController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -174,10 +176,14 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\category.cs" />
     <Compile Include="Models\credit.cs" />
+    <Compile Include="Models\creditforview.cs" />
     <Compile Include="Models\item.cs" />
+    <Compile Include="Models\itemjoincategory.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\trans_d.cs" />
+    <Compile Include="Models\trans_dview.cs" />
     <Compile Include="Models\trans_m.cs" />
+    <Compile Include="Models\trans_mview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -294,10 +300,15 @@
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\SignUp.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
-    <Content Include="Views\Item\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Credit\postcredit.cshtml" />
     <Content Include="Views\Credit\Index.cshtml" />
+    <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\Item\testforhome.cshtml" />
+    <Content Include="Views\TransM\posttransmst.cshtml" />
+    <Content Include="Views\TransM\Index.cshtml" />
+    <Content Include="Views\Item\_homeview.cshtml" />
+    <Content Include="Views\Item\makehomepage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

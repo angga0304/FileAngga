@@ -1,0 +1,59 @@
+﻿@model ResidentsDuesApp.House
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>House</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Block)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Block)
+            @Html.ValidationMessageFor(model => model.Block)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HouseNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HouseNumber)
+            @Html.ValidationMessageFor(model => model.HouseNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.emty)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.emty)
+            @Html.ValidationMessageFor(model => model.emty)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.phone)
+            @Html.ValidationMessageFor(model => model.phone)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

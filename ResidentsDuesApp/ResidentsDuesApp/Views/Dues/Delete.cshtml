@@ -1,0 +1,46 @@
+﻿@model ResidentsDuesApp.due
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>due</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DuesID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DuesID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DuesDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DuesDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.House.Block)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.House.Block)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fee)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fee)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

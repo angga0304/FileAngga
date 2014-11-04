@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ResidentsDuesApp.House>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Block)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </th>
+        <th>
+            Empty?
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Block)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseNumber)
+        </td>
+@{string ket;
+  if (item.emty == 1)
+  {
+      ket = "NO";
+  }
+  else
+  { ket = "YES"; }
+}
+        <td>
+            @ket;
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HouseID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HouseID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HouseID })
+        </td>
+    </tr>
+    <tr id="detail"></tr>
+}
+
+</table>

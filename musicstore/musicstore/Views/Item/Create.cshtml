@@ -13,6 +13,14 @@
         <legend>item</legend>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.ItemId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ItemId)
+            @Html.ValidationMessageFor(model => model.ItemId)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.Category, "category1")
         </div>
         <div class="editor-field">

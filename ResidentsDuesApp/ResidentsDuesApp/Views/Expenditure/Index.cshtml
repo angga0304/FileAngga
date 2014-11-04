@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ResidentsDuesApp.Expenditure>
+@using ResidentsDuesApp.Models;
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<h2>Data Pengeluaran</h2>
+<br />
+<div id="form-input">
+    @{Html.RenderAction("CreatePartial","");}
+</div>
+@{
+    WebGrid grid = new WebGrid(Model,
+        null,
+        null,
+        10,
+        true,
+        true,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null);
+    }
+@grid.GetHtml(
+tableStyle: "table table-hover",
+
+columns : new[]{
+    grid.Column("ExpenditureID","ID"),
+    grid.Column("ExpenditureDate","Tanggal"),
+    grid.Column("Expenditure1","Pengeluaran"),
+    grid.Column("Fee","Biaya"),
+    grid.Column("",
+        header:"Actions",
+        format:@<text>
+                    @Html.ActionLink("Detail","Details",new{id=item.ExpenditureID}) |
+                    @Html.ActionLink("Delete","Delete",new{id=item.ExpenditureID})
+                </text>
+    )
+})
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript">
+        $(function() {
+            $('#txttanggal').datepicker({});
+        })
+    </script>
+}
+

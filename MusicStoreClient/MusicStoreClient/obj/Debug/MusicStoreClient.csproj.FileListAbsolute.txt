@@ -44,6 +44,6 @@ c:\users\angga\documents\visual studio 2012\Projects\MusicStoreClient\MusicStore
 c:\users\angga\documents\visual studio 2012\Projects\MusicStoreClient\MusicStoreClient\bin\DotNetOpenAuth.OAuth.xml
 c:\users\angga\documents\visual studio 2012\Projects\MusicStoreClient\MusicStoreClient\bin\DotNetOpenAuth.OpenId.xml
 c:\users\angga\documents\visual studio 2012\Projects\MusicStoreClient\MusicStoreClient\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-c:\users\angga\documents\visual studio 2012\Projects\MusicStoreClient\MusicStoreClient\obj\Debug\MusicStoreClient.csprojResolveAssemblyReference.cache
 c:\users\angga\documents\visual studio 2012\Projects\MusicStoreClient\MusicStoreClient\obj\Debug\MusicStoreClient.dll
 c:\users\angga\documents\visual studio 2012\Projects\MusicStoreClient\MusicStoreClient\obj\Debug\MusicStoreClient.pdb
+C:\Users\Angga\Documents\Visual Studio 2012\Projects\MusicStoreClient\MusicStoreClient\obj\Debug\MusicStoreClient.csprojResolveAssemblyReference.cache

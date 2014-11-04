@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ResidentsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ResidentsModelStoreContainer">
+    <EntitySet Name="dues" EntityType="ResidentsModel.Store.dues" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Expenditure" EntityType="ResidentsModel.Store.Expenditure" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="House" EntityType="ResidentsModel.Store.House" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NeighbourhoodWatch" EntityType="ResidentsModel.Store.NeighbourhoodWatch" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="ResidentsModel.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="ResidentsModel.Store.users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Dues_House" Association="ResidentsModel.Store.FK_Dues_House">
+      <End Role="House" EntitySet="House" />
+      <End Role="dues" EntitySet="dues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_House" Association="ResidentsModel.Store.FK_People_House">
+      <End Role="House" EntitySet="House" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="dues">
+    <Key>
+      <PropertyRef Name="DuesID" />
+    </Key>
+    <Property Name="DuesID" Type="int" Nullable="false" />
+    <Property Name="DuesDate" Type="date" />
+    <Property Name="HouseID" Type="int" />
+    <Property Name="Fee" Type="decimal" />
+  </EntityType>
+  <EntityType Name="Expenditure">
+    <Key>
+      <PropertyRef Name="ExpenditureID" />
+    </Key>
+    <Property Name="ExpenditureID" Type="int" Nullable="false" />
+    <Property Name="ExpenditureDate" Type="date" />
+    <Property Name="Expenditure" Type="text" />
+    <Property Name="Fee" Type="decimal" />
+  </EntityType>
+  <EntityType Name="House">
+    <Key>
+      <PropertyRef Name="HouseID" />
+    </Key>
+    <Property Name="HouseID" Type="int" Nullable="false" />
+    <Property Name="Block" Type="nvarchar" MaxLength="25" />
+    <Property Name="HouseNumber" Type="nvarchar" MaxLength="25" />
+    <Property Name="emty" Type="int" />
+    <Property Name="phone" Type="nvarchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="NeighbourhoodWatch">
+    <Key>
+      <PropertyRef Name="NeighbourhoodID" />
+    </Key>
+    <Property Name="NeighbourhoodID" Type="int" Nullable="false" />
+    <Property Name="Chief" Type="nvarchar" MaxLength="25" />
+    <Property Name="Duesdef" Type="decimal" />
+    <Property Name="Cash" Type="decimal" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="PeopleID" />
+    </Key>
+    <Property Name="PeopleID" Type="int" Nullable="false" />
+    <Property Name="IDCard" Type="nvarchar" MaxLength="25" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Age" Type="int" />
+    <Property Name="HouseID" Type="int" />
+    <Property Name="BirthDate" Type="date" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="UserNo" />
+    </Key>
+    <Property Name="UserNo" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="25" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="25" />
+    <Property Name="Userpassword" Type="nvarchar" MaxLength="25" />
+  </EntityType>
+  <Association Name="FK_Dues_House">
+    <End Role="House" Type="ResidentsModel.Store.House" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dues" Type="ResidentsModel.Store.dues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="House">
+        <PropertyRef Name="HouseID" />
+      </Principal>
+      <Dependent Role="dues">
+        <PropertyRef Name="HouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_House">
+    <End Role="House" Type="ResidentsModel.Store.House" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="People" Type="ResidentsModel.Store.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="House">
+        <PropertyRef Name="HouseID" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="HouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ResidentsDuesApp.Models.Balance>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th style='width:150px; text-align:center'>
+            Tanggal
+        </th>
+        <th style="text-align:center">
+            Keterangan
+        </th>
+        <th style="text-align:center">
+            Jumlah
+        </th>
+        <th style="text-align:center">
+            Kas Sekarang
+        </th>
+        <th></th>
+    </tr>
+        </thead>
+@{ decimal total =0; }
+@foreach (var item in Model) {
+    <tr>
+        <td style="text-align:left;">
+            @item.tgl.ToString("dd MMMM yyyy")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.keterangan)
+        </td>
+        <td style="text-align:right">
+            @item.jumlah.ToString(format:"Rp 0,00.00")
+        </td>
+        @{if(item.keterangan.Contains("Iuran Rumah") || item.keterangan.Contains("Sisa Kas"))
+          { total = total + item.jumlah; }
+          else
+          {
+           total -= item.jumlah;  
+          }
+              }
+        <td style="text-align:right">
+            @total.ToString(format:"Rp 0,00.00")
+        </td>
+@*        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+    <tr>
+        <td colspan="2"></td>
+        <th style="text-align:right">Sisa Uang dalam kas</th>
+        <td style="text-align:right"> @total.ToString(format:"Rp 0,00.00") </td>
+    </tr>
+</table>
+

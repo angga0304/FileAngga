@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ResidentsDuesApp.due>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+@* Link untuk datepicker *@
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>*@
+<div class="form-group">
+    <label class="col-xs-12 col-sm-1 control-label">Periode</label>
+    <div class="col-xs-12 col-sm-2">
+      @Html.DropDownList("Value", (IEnumerable<SelectListItem>)ViewBag.listbulan, new { @class= "form-control", @id="Month"})
+    </div>
+    <div class="col-xs-12 col-sm-2">
+@*      @{var tahun = DateTime.Now.Year;}
+      <select class="form-control" id="year">
+          @{ var Minthn=tahun-2;
+          var Maxthn = tahun+1;}
+          @for (int i = Minthn; i <= Maxthn; i++)
+          {
+              <option value="@i">@i</option>
+          }
+      </select>*@
+        @Html.DropDownList("Value", (IEnumerable<SelectListItem>)ViewBag.listyear, new { @class= "form-control", @id="year"})
+    </div>
+    <div class="col-xs-12 col-sm-2">
+        <input type="button" class="btn btn-primary" value="Filter"  onclick="CaribyPeriode()" />
+    </div>
+</div>
+<br />
+<br />
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DuesID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DuesDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.House.HouseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fee)
+        </th>
+        <th>Action</th>
+    </tr>
+    </thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DuesID)
+        </td>
+        <td>
+            @item.DuesDate.Value.ToString("dd MMMM yyyy")
+        </td>
+        <td>
+            @item.House.Block - @item.House.HouseNumber
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fee)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.DuesID  }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DuesID })
+        </td>
+    </tr>
+}
+</table>
+<p>
+    <a onclick="Bayar()">Bayar Iuran</a>
+</p>
+
+@* Modal Form *@
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:300px">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Bayar</h4>
+            </div>
+            <div id="modal-body">
+
+            </div>
+        </div>                 
+    </div>
+  </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript">
+        function CaribyPeriode() {
+            var idxmonth = document.getElementById('Month').value;
+            var idxyear = document.getElementById('year').value;
+            window.location = "/dues/index/"+idxmonth+idxyear;
+            //alert(idxmonth+""+idxyear)
+        }
+
+        function Bayar() {
+            $.ajax({
+                url: "/Dues/PayDues",
+                type: "GET",
+                success: function (data) {
+                    $('#modal-body').html(data);
+                    //$('#txttanggal').datepicker();
+                    $('#myModal').modal('show');
+                }
+            });
+            //$('#myModal').modal('show');
+        }   
+    </script>
+}

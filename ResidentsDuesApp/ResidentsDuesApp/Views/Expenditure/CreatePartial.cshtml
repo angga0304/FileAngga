@@ -1,0 +1,20 @@
+﻿@model ResidentsDuesApp.Expenditure
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <th>New Data of Expenditure</th>
+            <td>:</td>
+            <td>@Html.TextBoxFor(model => model.ExpenditureID, new {@class="form-control",placeholder="ID"})</td>
+            <td>@Html.TextBoxFor(model => model.ExpenditureDate, new {@class="form-control", @id="txttanggal",placeholder="Date"})</td>
+            <td>@Html.TextBoxFor(model => model.Expenditure1, new {@class="form-control",placeholder="Keterangan"})</td>
+            <td>@Html.TextBoxFor(model => model.Fee, new {@class="form-control",placeholder="Fee"})</td>
+            <td><input type="submit" class="btn btn-primary" value="Save" /></td>
+        </tr>
+    </table>
+}

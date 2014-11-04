@@ -25,6 +25,7 @@ namespace musicstore.Controllers
                 item.ItemId = itemdata.ItemId;
                 item.Category = itemdata.Category;
                 item.ItemName = itemdata.ItemName;
+                item.Price = itemdata.Price;
                 item.EventAct = itemdata.EventAct;
                 item.even = itemdata.even;
                 lisitem.Add(item);
@@ -45,6 +46,7 @@ namespace musicstore.Controllers
             dataitem.ItemId = item.ItemId;
             dataitem.ItemName = item.ItemName;
             dataitem.Category = item.Category;
+            dataitem.Price = item.Price;
             dataitem.EventAct = item.EventAct;
             dataitem.even = item.even;
             return dataitem;

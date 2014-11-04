@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ResidentsDuesApp.Models.Balance>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Tanggal
+        </th>
+        <th>
+            Keterangan
+        </th>
+        <th>
+            Jumlah
+        </th>
+        <th>
+            Kas Sekarang
+        </th>
+        <th></th>
+    </tr>
+@{ decimal total =0; }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tgl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.keterangan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jumlah)
+        </td>
+        @{if(!item.keterangan.Contains("Iuran Rumah") && !item.keterangan.Equals("Uang Kas Bulan Lalu"))
+          { total = total - item.jumlah; }
+          else
+          {
+           total += item.jumlah;  
+          }
+              }
+        <td>
+            @total
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

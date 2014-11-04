@@ -1,0 +1,180 @@
+﻿@model IEnumerable<ResidentsDuesApp.House>
+@using ResidentsDuesApp.Models;
+
+@{
+    ViewBag.Title = "Indent";
+}
+
+<h2>Index of House</h2>
+@if(ViewBag.message!="")
+{        
+<div id="pesan" class="alert alert-dismissable alert-warning">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+  <h4>Warning!</h4>
+  <p>@ViewBag.message . @Html.ActionLink("Back To List", "Index/")</p>
+</div>
+}
+
+<div class="form-group" style="width:250px">
+  <div class="input-group">
+    <input type="text" class="form-control" id="txtsearch" placeholder="Nomor Rumah...">
+    <span class="input-group-btn">
+      <button onclick="carirumah()" class="btn btn-default" type="button">Cari</button>
+    </span>
+  </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.HouseID)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Block)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </th>
+        <th style="text-align:center">
+            Kosong
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th></th>
+    </tr>
+        </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Block)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseNumber)
+        </td>
+@{string ket;
+  if (item.emty == 1)
+  {
+      ket = "NO" ;
+  }
+  else
+  { ket = "YES"; }
+}
+        <td>
+            @ket
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HouseID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HouseID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HouseID })  |
+            <a data-toggle="modal" data-target="#myModal">View Modal</a>    |   
+            <a onclick="getdata(@item.HouseID)">Edit Modal</a>  
+        </td>
+    </tr>
+    <tr id="detail"></tr>
+}
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create")  | <a onclick="create()">Create Modal</a>
+</p>
+<div id="areatulis"></div>
+
+@* Modal Edit *@
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Data</h4>
+            </div>
+            <div id="mdal-body">
+
+            </div>
+            </div>                 
+    </div>
+  </div>
+
+@section scripts{
+    <script type="text/javascript">
+        function carirumah() {
+            var no = $('#txtsearch').val()
+            if (no == "") {
+                alert("Textbox search is empty");
+            }
+            else {
+                window.location = "/House/Index/" + no
+            }
+        }
+
+        //function savechange() {
+            
+        //}
+
+        //function getdata(id) {
+        //    var id = id;
+        //    $.ajax({
+        //        url: "House/getHouseData/"+id ,
+        //        type: "GET",
+        //        //dataType:"json",
+        //        //data : {'id ': id },
+        //        success: function (data,y,z) {
+        //            alert(data.data);
+        //            //$('#inputBlock').val(data.Block)
+        //            //$('#inputnumber').val(data.HouseNumber)
+        //            //$('#inputkosong').val(data.emty)
+        //            //$('#inputphone').val(data.phone)
+        //            //$('#myModal').modal('show')
+        //        }
+        //    });
+        //}
+
+        function getdata(id) {
+            var id = id;
+            $.ajax({
+                url: "House/editpartial/" + id,
+                type: "GET",
+                success: function (data) {
+                    $('#myModalLabel').html('Edit Data');
+                    $('#mdal-body').html('');
+                    $('#mdal-body').html(data);
+                    $('#myModal').modal('show');
+                }
+            });
+        }
+
+        function create() {
+            $.ajax({
+                url: "House/createpartial",
+                type: "GET",
+                success: function (data) {
+                    $('#myModalLabel').html('Create Data');
+                    $('#mdal-body').html('');
+                    $('#mdal-body').html(data);
+                    $('#myModal').modal('show');
+                }
+            });
+        }
+
+        function getnilai() {
+            $('#areatulis').html("nana");
+            var telp = $('#txtphone').val();
+            $('#areatulis').html(telp);
+        }
+
+        //function getdata(id) {
+        //    var id = id;
+        //    $.getJSON("House/getHouseData/" + id, function (data) {
+        //        alert(JSON.stringify(data));
+        //    })
+        //}
+
+    </script>
+}

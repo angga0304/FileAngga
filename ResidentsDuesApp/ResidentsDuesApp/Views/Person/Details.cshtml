@@ -1,0 +1,45 @@
+﻿@model ResidentsDuesApp.Person
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Person</legend>
+
+    <div class="display-label">
+         <span class="label label-success" style="font-size:18px">ID    :</span>  <span class="label label-primary" style="font-size:18px">@Model.PeopleID</span>
+    </div>
+    <br />
+    <div class="display-label">
+         <span class="label label-success" style="font-size:18px">Nama  :</span> : <span class="label label-primary" style="font-size:18px">@Model.Name</span>
+    </div>
+    <br />
+
+    <div class="display-label">
+         <span class="label label-success" style="font-size:18px">KTP   :</span> : <span class="label label-primary" style="font-size:18px">@Model.IDCard</span>
+    </div>
+    <br />
+
+    <div class="display-label">
+         <span class="label label-success" style="font-size:18px">Umur  :</span> : <span class="label label-primary" style="font-size:18px">@Model.Age</span>
+    </div>
+
+    <br />
+    <div class="display-label">
+         <span class="label label-success" style="font-size:18px">House Number  :</span> : <span class="label label-primary" style="font-size:18px">@Model.House.Block - @Model.House.HouseNumber</span>
+    </div>
+    <br />
+
+    <div class="display-label">
+         <span class="label label-success" style="font-size:18px">Birth Date    :</span> : <span class="label label-primary" style="font-size:18px">@Model.BirthDate</span>
+    </div>
+    <br />
+    <br />
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PeopleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

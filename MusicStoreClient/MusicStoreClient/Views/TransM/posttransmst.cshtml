@@ -1,0 +1,59 @@
+﻿@model MusicStoreClient.Models.trans_m
+
+@{
+    ViewBag.Title = "posttransmst";
+}
+
+<h2>posttransmst</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>trans_m</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransId)
+            @Html.ValidationMessageFor(model => model.TransId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransaDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransaDate)
+            @Html.ValidationMessageFor(model => model.TransaDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MemberId)
+            @Html.ValidationMessageFor(model => model.MemberId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TotalTrans)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TotalTrans)
+            @Html.ValidationMessageFor(model => model.TotalTrans)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

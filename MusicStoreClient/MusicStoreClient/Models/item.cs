@@ -13,5 +13,7 @@ namespace MusicStoreClient.Models
         public string EventAct { get; set; }
         public string even { get; set; }
         public Nullable<decimal> Price { get; set; }
+
+        public virtual category category1 { get; set; }
     }
 }

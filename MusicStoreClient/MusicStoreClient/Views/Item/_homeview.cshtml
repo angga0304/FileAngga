@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MusicStoreClient.Models.item>
+@{var count = 0;
+  }
+<table>
+    <tr>
+@foreach (var item in Model) {
+    count = count + 1;
+    var txt = string.Concat("/Images/orderedList", count, ".png");
+    
+    <td>
+        <table>
+    <tr>
+        <td>
+            <img src=@txt />
+        </td>
+        <td>
+        <table>
+            <tr>
+                <th> @Html.DisplayFor(modelItem => item.ItemName) </th>
+            </tr>
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.Price) </td>
+            </tr>
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.EventAct) </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Detail","Index",new{id = item.ItemId})
+                </td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+         </table>
+    </td>
+    if (count == 2)
+    {<tr></tr>;
+    }
+}
+</tr>
+</table>
+@section scripts{
+    <script type="text/javascript">
+        function getdataitem(id) {
+            window.location("Item/Index/"+id);
+        }
+    </script>
+}
+

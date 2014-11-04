@@ -1,0 +1,66 @@
+﻿@model ResidentsDuesApp.due
+
+@{
+    ViewBag.Title = "PayDues";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<h2>PayDues</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DuesID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DuesID, new {@class="form-control" })
+            @Html.ValidationMessageFor(model => model.DuesID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DuesDate)
+        </div>
+        <div class='input-group date' id='datetimepicker3'>
+            @Html.TextBoxFor(model => model.DuesDate, new {@class="form-control datecontrol",type="date", @id="txttanggal", style="width:200px" })
+            @Html.ValidationMessageFor(model => model.DuesDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HouseID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("HouseID",(IEnumerable<SelectListItem>)ViewBag.HouseID, new {@class="form-control" })
+            @Html.ValidationMessageFor(model => model.HouseID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fee)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Fee, new {@class="form-control" })
+            @Html.ValidationMessageFor(model => model.Fee)
+        </div>
+        <p>
+            <input type="submit" class="btn btn-primary" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    
+    <script type="text/javascript">
+        $(function () {
+            $('#txttanggal').datepicker();
+        });
+    </script>
+}

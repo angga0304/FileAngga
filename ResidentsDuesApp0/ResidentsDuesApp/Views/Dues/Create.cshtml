@@ -1,0 +1,59 @@
+﻿@model ResidentsDuesApp.due
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>due</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DuesID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DuesID)
+            @Html.ValidationMessageFor(model => model.DuesID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DuesDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DuesDate)
+            @Html.ValidationMessageFor(model => model.DuesDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HouseID, "House")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("HouseID", String.Empty)
+            @Html.ValidationMessageFor(model => model.HouseID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fee)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fee)
+            @Html.ValidationMessageFor(model => model.Fee)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ResidentsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ResidentsEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="dues" EntityType="ResidentsModel.due" />
+    <EntitySet Name="Expenditures" EntityType="ResidentsModel.Expenditure" />
+    <EntitySet Name="Houses" EntityType="ResidentsModel.House" />
+    <EntitySet Name="People" EntityType="ResidentsModel.Person" />
+    <AssociationSet Name="FK_Dues_House" Association="ResidentsModel.FK_Dues_House">
+      <End Role="House" EntitySet="Houses" />
+      <End Role="dues" EntitySet="dues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_House" Association="ResidentsModel.FK_People_House">
+      <End Role="House" EntitySet="Houses" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <EntitySet Name="NeighbourhoodWatches" EntityType="ResidentsModel.NeighbourhoodWatch" />
+    <EntitySet Name="users" EntityType="ResidentsModel.user" />
+  </EntityContainer>
+  <EntityType Name="due">
+    <Key>
+      <PropertyRef Name="DuesID" />
+    </Key>
+    <Property Name="DuesID" Type="Int32" Nullable="false" />
+    <Property Name="DuesDate" Type="DateTime" Precision="0" />
+    <Property Name="HouseID" Type="Int32" />
+    <Property Name="Fee" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="House" Relationship="ResidentsModel.FK_Dues_House" FromRole="dues" ToRole="House" />
+  </EntityType>
+  <EntityType Name="Expenditure">
+    <Key>
+      <PropertyRef Name="ExpenditureID" />
+    </Key>
+    <Property Name="ExpenditureID" Type="Int32" Nullable="false" />
+    <Property Name="ExpenditureDate" Type="DateTime" Precision="0" />
+    <Property Name="Expenditure1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Fee" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="House">
+    <Key>
+      <PropertyRef Name="HouseID" />
+    </Key>
+    <Property Name="HouseID" Type="Int32" Nullable="false" />
+    <Property Name="Block" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="HouseNumber" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="emty" Type="Int32" />
+    <Property Name="phone" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="dues" Relationship="ResidentsModel.FK_Dues_House" FromRole="House" ToRole="dues" />
+    <NavigationProperty Name="People" Relationship="ResidentsModel.FK_People_House" FromRole="House" ToRole="People" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PeopleID" />
+    </Key>
+    <Property Name="PeopleID" Type="Int32" Nullable="false" />
+    <Property Name="IDCard" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="HouseID" Type="Int32" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="House" Relationship="ResidentsModel.FK_People_House" FromRole="People" ToRole="House" />
+  </EntityType>
+  <Association Name="FK_Dues_House">
+    <End Role="House" Type="ResidentsModel.House" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dues" Type="ResidentsModel.due" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="House">
+        <PropertyRef Name="HouseID" />
+      </Principal>
+      <Dependent Role="dues">
+        <PropertyRef Name="HouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_House">
+    <End Role="House" Type="ResidentsModel.House" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="People" Type="ResidentsModel.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="House">
+        <PropertyRef Name="HouseID" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="HouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="NeighbourhoodWatch">
+    <Key>
+      <PropertyRef Name="NeighbourhoodID" />
+    </Key>
+    <Property Type="Int32" Name="NeighbourhoodID" Nullable="false" />
+    <Property Type="String" Name="Chief" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="Duesdef" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Cash" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="UserNo" />
+    </Key>
+    <Property Type="Int32" Name="UserNo" Nullable="false" />
+    <Property Type="String" Name="UserID" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UserName" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Userpassword" MaxLength="25" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

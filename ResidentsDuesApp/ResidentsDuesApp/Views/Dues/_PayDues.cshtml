@@ -1,0 +1,30 @@
+﻿@model ResidentsDuesApp.due
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <div class="modal-body">
+        <table>
+            <tr>
+                <td>Tanggal</td>
+                <td>@Html.TextBoxFor(model => model.DuesDate, new {@class="form-control datecontrol", id="txttanggal", style="width:200px" })</td>
+            </tr>
+            <tr>
+                <td>ID</td>
+                <td>@Html.TextBoxFor(model => model.DuesID, new {@class="form-control" })</td>
+            </tr>
+            <tr>
+                <td>NO</td>
+                <td>@Html.DropDownList("HouseID",(IEnumerable<SelectListItem>)ViewBag.HouseID, new {@class="form-control" })</td>
+            </tr>
+            <tr>
+                <td>Iuran</td>
+                <td>@Html.TextBoxFor(model => model.Fee, new {@class="form-control" })</td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer" style="width:300px">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="Bayar" id="btnSave" />
+        <input type="button"value="bab" onclick="muncul()" />
+    </div>
+}
+

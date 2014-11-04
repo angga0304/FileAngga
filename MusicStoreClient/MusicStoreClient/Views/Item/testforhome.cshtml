@@ -1,0 +1,117 @@
+﻿@model IEnumerable<MusicStoreClient.Models.item>
+@using MusicStoreClient.Models;
+@{var count = 0;
+  }
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Wellcome to</h1>
+                <h2>MVC Music Store</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+<h2>We suggest to View:</h2>
+<h3> Music Tools </h3>
+<section class="featured">
+        <div class="content-wrapper">
+<table>
+    <tr>
+@foreach (var item in Model) {
+    count = count + 1;
+    var txt = string.Concat("/Images/orderedList", count, ".png");
+    
+    <td>
+        <table border="1">
+    <tr>
+        <td>
+            <img src=@txt />
+        </td>
+        <td>
+        <table>
+            <tr>
+                <th> @Html.DisplayFor(modelItem => item.ItemName) </th>
+            </tr>
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.Price) </td>
+            </tr>
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.EventAct) </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Detail","Index",new{id = item.ItemId})    |
+                    Buy
+                </td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+         </table>
+    </td>
+    if (count == 2)
+    {<tr></tr>;
+    }
+}
+</tr>
+</table>
+            </div>
+    </section>
+<label><u>View More</u></label>
+
+<h3> CD/DVD </h3>
+<section class="featured">
+        <div class="content-wrapper">
+<table>
+    <tr>
+@{count = 0;}
+@foreach (item item in ViewBag.listtools)
+{
+    count = count + 1;
+    var txt = string.Concat("/Images/orderedList", count, ".png");
+    
+    <td>
+        <table border="1">
+    <tr>
+        <td>
+            <img src=@txt />
+        </td>
+        <td>
+        <table>
+            <tr>
+                <th> @Html.DisplayFor(modelItem => item.ItemName) </th>
+            </tr>
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.Price) </td>
+            </tr>
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.EventAct) </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Detail","Index",new{id = item.ItemId})    |
+                    Buy
+                </td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+         </table>
+    </td>
+    if (count == 2)
+    {<tr></tr>;
+    }
+}
+</tr>
+</table>
+            </div>
+    </section>
+@section scripts{
+    <script type="text/javascript">
+        function getdataitem(id) {
+            window.location("Item/Index/"+id);
+        }
+    </script>
+}
+

@@ -1,0 +1,36 @@
+﻿@model ResidentsDuesApp.Expenditure
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Expenditure</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExpenditureDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExpenditureDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Expenditure1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Expenditure1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fee)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fee)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ExpenditureID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

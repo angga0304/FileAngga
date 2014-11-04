@@ -1,0 +1,10 @@
+﻿@model ResidentsDuesApp.House
+
+<form method="post" action="/House2/editontable/@Model.HouseID">
+    <td><input id="Block" name="Block" type="text" class="form-control" value="@Model.Block" /></td>
+    <td><input id="HouseNumber" name="HouseNumber" type="text" class="form-control" value="@Model.HouseNumber" /></td>
+    <td><input id="emty" name="emty" type="text" class="form-control" value="@Model.emty" /></td>
+    <td><input id="phone" name="phone" type="text" class="form-control" value="@Model.phone" /></td>
+    <td><input type="submit" value="Save" /></td>
+</form>
+

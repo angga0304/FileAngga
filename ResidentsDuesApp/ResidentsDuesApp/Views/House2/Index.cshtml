@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ResidentsDuesApp.House>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover table-stripped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Block)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    var id = "row" + item.HouseID;
+    <tr id="@id" ondblclick="edit(@item.HouseID)">
+        <td>
+            @Html.DisplayFor(modelItem => item.Block)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HouseID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HouseID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HouseID })
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{
+    <script type="text/javascript">
+        function edit(id) {
+            var idrow = "#row" + id;
+            $.ajax({
+                url: "House2/editontable/" + id,
+                type: "GET",
+                success: function (data) {
+                    //$(idrow).html('<form method="post" action ="/House2/editontable/7">');
+                    $(idrow).html(data);
+                    //$(idrow).append();
+                    
+                }
+            });
+        }
+    </script>
+}

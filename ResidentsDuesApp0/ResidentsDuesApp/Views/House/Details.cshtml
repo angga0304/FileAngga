@@ -1,0 +1,39 @@
+﻿@model ResidentsDuesApp.House
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>House</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Block) :   @Html.DisplayFor(model => model.Block)
+    </div>
+
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HouseNumber)   :   @Html.DisplayFor(model => model.HouseNumber)
+    </div>
+
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.emty)  :   @Html.DisplayFor(model => model.emty)
+    </div>
+
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.phone) :   @Html.DisplayFor(model => model.phone)
+    </div>
+    <br />
+</fieldset>
+    <div>
+        @{Html.RenderAction("getpartial", "Person", new { id = Model.HouseID});}
+        @*@{Html.RenderPartial("/Person/_IndexPartial");}*@
+    </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.HouseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

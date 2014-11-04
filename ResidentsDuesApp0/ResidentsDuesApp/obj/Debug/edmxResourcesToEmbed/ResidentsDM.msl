@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ResidentsModelStoreContainer" CdmEntityContainer="ResidentsEntities">
+    <EntitySetMapping Name="dues">
+      <EntityTypeMapping TypeName="ResidentsModel.due">
+        <MappingFragment StoreEntitySet="dues">
+          <ScalarProperty Name="DuesID" ColumnName="DuesID" />
+          <ScalarProperty Name="DuesDate" ColumnName="DuesDate" />
+          <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expenditures">
+      <EntityTypeMapping TypeName="ResidentsModel.Expenditure">
+        <MappingFragment StoreEntitySet="Expenditure">
+          <ScalarProperty Name="ExpenditureID" ColumnName="ExpenditureID" />
+          <ScalarProperty Name="ExpenditureDate" ColumnName="ExpenditureDate" />
+          <ScalarProperty Name="Expenditure1" ColumnName="Expenditure" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Houses">
+      <EntityTypeMapping TypeName="ResidentsModel.House">
+        <MappingFragment StoreEntitySet="House">
+          <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+          <ScalarProperty Name="Block" ColumnName="Block" />
+          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+          <ScalarProperty Name="emty" ColumnName="emty" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="ResidentsModel.Person">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="PeopleID" ColumnName="PeopleID" />
+          <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NeighbourhoodWatches">
+      <EntityTypeMapping TypeName="ResidentsModel.NeighbourhoodWatch">
+        <MappingFragment StoreEntitySet="NeighbourhoodWatch">
+          <ScalarProperty Name="Cash" ColumnName="Cash" />
+          <ScalarProperty Name="Duesdef" ColumnName="Duesdef" />
+          <ScalarProperty Name="Chief" ColumnName="Chief" />
+          <ScalarProperty Name="NeighbourhoodID" ColumnName="NeighbourhoodID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="ResidentsModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="Userpassword" ColumnName="Userpassword" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserNo" ColumnName="UserNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

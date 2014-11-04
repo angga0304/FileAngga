@@ -1,0 +1,21 @@
+﻿@* System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper *@
+@using System.Web.Mvc;
+@{
+    ViewBag.Title = "makehomepage";
+}
+
+<h2>makehomepage</h2>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Wellcome to</h1>
+                <h2>MVC Music Store</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+<h3>We suggest to View:</h3>
+<div>
+@{Html.RenderAction("tes", "Item", new { });}
+    </div>

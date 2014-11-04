@@ -1,0 +1,43 @@
+﻿@model ResidentsDuesApp.House
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>House</legend>
+
+    <div class="display-label">
+        <span style="font-size:18px" class="label label-info">Rumah No :</span> 
+       <span style="font-size:18px" class="label label-default">@Model.Block - @Model.HouseNumber</span>
+    </div>
+    <br />
+    <div class="display-label">
+         <span style="font-size:18px" class="label label-info">Kosong :</span>
+           @{if(Model.emty ==1){    
+               <span style="font-size:18px" class="label label-default">Tidak</span>
+           }
+            else{
+                 <span style="font-size:18px" class="label label-default">Ya</span>
+             }
+           }
+    </div>
+    <br />
+    <div class="display-label">
+        <span style="font-size:18px" class="label label-info">Contact :</span> 
+       <span style="font-size:18px" class="label label-default">@Model.phone</span>
+    </div>
+    <br />
+    <br />
+</fieldset>
+<span style="font-size:16px" class="label label-primary">Penghuni</span>
+    <div>
+        @{Html.RenderAction("getpartial", "Person", new { id = Model.HouseID});}
+        @*@{Html.RenderPartial("/Person/_IndexPartial");}*@
+    </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.HouseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

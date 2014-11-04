@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ResidentsDuesApp.Person>
+
+@{
+    WebGrid grid = new WebGrid(Model,
+        null,
+        null,
+        6,
+        false,
+        true,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null);
+    }
+@grid.GetHtml(
+columns : new[]{
+    grid.Column("Name","Nama"),
+    grid.Column("IDCard","KTP"),
+    grid.Column("Age","Umur"),
+    grid.Column("BirthDate","Tanggal Lahir"),
+    grid.Column("",
+        header : "Actions",
+        format :@<text>
+                    @Html.ActionLink("Details", "Details", new { id=item.PeopleID })
+                </text>
+        )
+})
+

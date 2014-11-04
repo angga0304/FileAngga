@@ -38,7 +38,8 @@ namespace musicstore.Controllers
             Trans_M trans_m = db.Trans_M.Find(id);
             if (trans_m == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                //throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                return null;
             }
             Trans_M data = new Trans_M();
             data.TransId = trans_m.TransId;

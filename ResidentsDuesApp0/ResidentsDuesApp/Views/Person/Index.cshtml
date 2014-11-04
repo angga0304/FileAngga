@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ResidentsDuesApp.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PeopleID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.House.HouseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PeopleID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @item.House.Block - @item.House.HouseNumber
+        </td>
+        <td>
+            @item.BirthDate.Value.ToString("dd MMMM yyyy")
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PeopleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PeopleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PeopleID })
+        </td>
+    </tr>
+}
+
+</table>
