@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -219,6 +220,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\datepicker.css" />
+    <Content Include="Content\print\bootstrap-theme.css" />
+    <Content Include="Content\print\bootstrap-theme.min.css" />
+    <Content Include="Content\print\bootstrap.css" />
+    <Content Include="Content\print\bootstrap.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="favicon.ico" />
@@ -227,6 +233,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ResidentsDM.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\Rumah.jpg" />
+    <Content Include="Images\account.jpg" />
+    <Content Include="Images\Satpam.gif" />
     <Content Include="ResidentsDM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ResidentsDM.edmx</DependentUpon>
@@ -240,6 +249,9 @@
       <DependentUpon>ResidentsDM.edmx</DependentUpon>
       <LastGenOutput>ResidentsDM.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -330,9 +342,11 @@
     <Content Include="Views\Dues\PayDues.cshtml" />
     <Content Include="Views\Dues\_PayDues.cshtml" />
     <Content Include="Views\Expenditure\CreatePartial.cshtml" />
+    <Content Include="Views\Balance\Lihatsemua.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -12,6 +12,14 @@ namespace ResidentsDuesApp.Controllers
     {
         private ResidentsEntities db = new ResidentsEntities();
 
+        public JsonResult AutoCompleteNama(string term)
+        {
+            var result = (from p in db.People
+                          where p.Name.ToLower().Contains(term.ToLower())
+                          select new { p.Name });
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         //
         // GET: /Person/
 
@@ -21,6 +29,7 @@ namespace ResidentsDuesApp.Controllers
             if (id == "")
             {
                 var people = db.People.Include(p => p.House);
+                ViewBag.nama = "";
                 return View(people.ToList());
             }
             else
@@ -30,6 +39,7 @@ namespace ResidentsDuesApp.Controllers
                 {
                     ViewBag.message = "Tidak Ditemukan Orang yang Anda Cari";
                 }
+                ViewBag.nama = id;
                 return View(people.ToList());
             }
         }

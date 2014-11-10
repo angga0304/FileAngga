@@ -5,8 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
+<h2 class="hidden-print">Index</h2>
+<div class="form-group hidden-print">
+    <label class="col-xs-12 col-sm-1 control-label">Periode</label>
+    <div class="col-xs-12 col-sm-2">
+      @Html.DropDownList("Value", (IEnumerable<SelectListItem>)ViewBag.listbulan, new { @class= "form-control", @id="Month"})
+    </div>
+    <div class="col-xs-12 col-sm-2">
+        @Html.DropDownList("Value", (IEnumerable<SelectListItem>)ViewBag.listyear, new { @class= "form-control", @id="year"})
+    </div>
+    <div class="col-xs-12 col-sm-2">
+        <input type="button" class="btn btn-primary" value="Filter"  onclick="CaribyPeriode()" />
+    </div>
+</div>
+<div class="visible-print-block" style="width:800px; margin:0 auto;">
+    <h3 id="Judul">Laporan Keuangan Bulan</h3>
+</div>
+<br />
+<br />
 <table class="table table-striped table-hover ">
     <thead>
     <tr>
@@ -57,7 +73,45 @@
     <tr>
         <td colspan="2"></td>
         <th style="text-align:right">Sisa Uang dalam kas</th>
-        <td style="text-align:right"> @total.ToString(format:"Rp 0,00.00") </td>
+        <td style="text-align:right"><strong>@total.ToString(format:"Rp 0,00.00")</strong></td>
     </tr>
 </table>
+<div style="padding:10px; border:1px solid black" class="hidden-print">
+    @*<div><a href="@Url.Action("Report", new {id="PDF" })">Get Report PDF</a></div>
+    <div><a href="@Url.Action("Report", new {id="Excel" })">Get Report Excel</a></div>
+    <div><a href="@Url.Action("Report", new {id="Word" })">Get Report Word</a></div>
+    <div><a href="@Url.Action("Report", new {id="Image" })">Get Report Image</a></div>*@
+    <button class="btn btn-primary" onclick="cetak()">Print</button>
+    <input type="checkbox" id="semua" />Cetak Semua
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        function cetak() {
+            if ($('#semua').is(":checked")) {
+                $.ajax({
+                    url: "/Balance/LihatSemua",
+                    type: "GET",
+                    success: function (data) {
+                        var myWindow = window.open('', '', 'width=600,height=600');
+                        myWindow.document.write(data);
+
+                        //myWindow.document.close();
+                        myWindow.focus();
+                        myWindow.print();
+                        //myWindow.close();
+                    }
+                });
+            }
+            else {
+                $('#Judul').text("Laporan Keuangan Bulan " + $('#Month option:selected').text() + " " + $('#year').val());
+                window.print()
+            }
+        }
+        function CaribyPeriode() {
+            window.location = "/Balance/Index/" + $('#Month').val() + $('#year').val();
+            //alert($('#Month').val() + $('#year').val());
+        }
+    </script>
+}
 

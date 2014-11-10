@@ -1,20 +1,36 @@
 ﻿@model ResidentsDuesApp.Expenditure
 
-<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
+    <div class="modal-body">
     <table>
         <tr>
             <th>New Data of Expenditure</th>
             <td>:</td>
+        </tr>
+        <tr>
+            <th>ID</th>
             <td>@Html.TextBoxFor(model => model.ExpenditureID, new {@class="form-control",placeholder="ID"})</td>
+        </tr>
+        <tr>
+            <th>Tanggal</th>
             <td>@Html.TextBoxFor(model => model.ExpenditureDate, new {@class="form-control", @id="txttanggal",placeholder="Date"})</td>
+        </tr>
+        <tr>
+            <th>Pengeluaran</th>
             <td>@Html.TextBoxFor(model => model.Expenditure1, new {@class="form-control",placeholder="Keterangan"})</td>
+        </tr>
+        <tr>
+            <th>Biaya</th>
             <td>@Html.TextBoxFor(model => model.Fee, new {@class="form-control",placeholder="Fee"})</td>
-            <td><input type="submit" class="btn btn-primary" value="Save" /></td>
         </tr>
     </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <input type="submit" class="btn btn-primary" value="Save" id="btnSave" />
+    </div>
 }

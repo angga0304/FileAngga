@@ -12,7 +12,7 @@
 
 <div class="form-group" style="width:250px">
   <div class="input-group">
-    <input type="text" class="form-control" id="txtsearch" placeholder="Nama Orang yang dicari">
+    <input type="text" class="form-control" id="txtsearch" placeholder="Nama Orang yang dicari" value="@ViewBag.nama">
     <span class="input-group-btn">
       <button onclick="cariorang()" class="btn btn-default" type="button">Cari</button>
     </span>
@@ -94,6 +94,7 @@
   </div>
 
 @section scripts{
+    @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript">
         function cariorang() {
             var nama = $('#txtsearch').val();

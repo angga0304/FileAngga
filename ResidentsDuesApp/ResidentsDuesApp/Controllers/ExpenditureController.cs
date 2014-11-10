@@ -10,14 +10,64 @@ namespace ResidentsDuesApp.Controllers
 {
     public class ExpenditureController : Controller
     {
+        //membuat list bulan dan tahun
+        public SelectList getlistbulan(int bulan)
+        {
+            SelectList listbulan = new SelectList(new[] {
+                new SelectListItem{Text="January", Value="1"},
+                new SelectListItem{Text="February", Value="2"},
+                new SelectListItem{Text="March", Value="3"},
+                new SelectListItem{Text="April", Value="4"},
+                new SelectListItem{Text="May", Value="5"},
+                new SelectListItem{Text="June", Value="6"},
+                new SelectListItem{Text="July", Value="7"},
+                new SelectListItem{Text="August", Value="8"},
+                new SelectListItem{Text="September", Value="9"},
+                new SelectListItem{Text="October", Value="10"},
+                new SelectListItem{Text="November", Value="11"},
+                new SelectListItem{Text="December", Value="12"}
+            }, "Value", "Text", bulan);
+            return listbulan;
+        }
+        public SelectList getlisttahun(int tahun)
+        {
+            var yr = Enumerable.Range(2010, (DateTime.Now.Year - 2009)).Reverse().Select(x => new SelectListItem { Value = x.ToString(), Text = x.ToString() });
+            SelectList listyear = new SelectList(yr.ToList(), "Value", "Text", tahun);
+            return listyear;
+        }
+
         private ResidentsEntities db = new ResidentsEntities();
 
         //
         // GET: /Expenditure/
 
-        public ActionResult Index()
+        public ActionResult Index(string id="")
         {
-            return View(db.Expenditures.ToList());
+            if (id == "")
+            {
+                ViewBag.listbulan = getlistbulan(DateTime.Now.Month);
+                ViewBag.listyear = getlisttahun(DateTime.Now.Year);
+                var listexp = db.Expenditures.Where(x => x.ExpenditureDate.Value.Month == DateTime.Now.Month && x.ExpenditureDate.Value.Year == DateTime.Now.Year);
+                return View(listexp.ToList());
+            }
+            else
+            {
+                int bulan, tahun;
+                if (id.Length == 6)
+                {
+                     bulan = Convert.ToInt32(id.Substring(0, 2));
+                     tahun = Convert.ToInt32(id.Substring(2, 4));
+                }
+                else
+                {
+                     bulan = Convert.ToInt32(id.Substring(0, 1));
+                     tahun = Convert.ToInt32(id.Substring(1, 4));
+                }
+                ViewBag.listbulan = getlistbulan(bulan);
+                ViewBag.listyear = getlisttahun(tahun);
+                var listexp = db.Expenditures.Where(x => x.ExpenditureDate.Value.Month == bulan && x.ExpenditureDate.Value.Year == tahun);
+                return View(listexp.ToList());
+            }
         }
 
         //
@@ -106,6 +156,28 @@ namespace ResidentsDuesApp.Controllers
                 return RedirectToAction("Index");
             }
             return View(expenditure);
+        }
+
+        public ActionResult EditPartial(int id = 0)
+        {
+            Expenditure expenditure = db.Expenditures.Find(id);
+            if (expenditure == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("CreatePartial", expenditure);
+        }
+
+        [HttpPost]
+        public ActionResult EditPartial(Expenditure expenditure)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(expenditure).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return PartialView("CreatePartial", expenditure);
         }
 
         //

@@ -8,9 +8,21 @@
 
 <h2>Data Pengeluaran</h2>
 <br />
-<div id="form-input">
-    @{Html.RenderAction("CreatePartial","");}
+<div class="form-group">
+    <label class="col-xs-12 col-sm-1 control-label">Periode</label>
+    <div class="col-xs-12 col-sm-2">
+      @Html.DropDownList("Value", (IEnumerable<SelectListItem>)ViewBag.listbulan, new { @class= "form-control", @id="Month"})
+    </div>
+    <div class="col-xs-12 col-sm-2">
+        @Html.DropDownList("Value", (IEnumerable<SelectListItem>)ViewBag.listyear, new { @class= "form-control", @id="year"})
+    </div>
+    <div class="col-xs-12 col-sm-2">
+        <input type="button" class="btn btn-primary" value="Filter"  onclick="CaribyPeriode()" />
+    </div>
 </div>
+@*<div id="form-input">
+    @{Html.RenderAction("CreatePartial","");}
+</div>*@
 @{
     WebGrid grid = new WebGrid(Model,
         null,
@@ -37,7 +49,7 @@ columns : new[]{
     grid.Column("",
         header:"Actions",
         format:@<text>
-                    @Html.ActionLink("Detail","Details",new{id=item.ExpenditureID}) |
+                    <a onclick="Edit(@item.ExpenditureID)">Edit</a> |
                     @Html.ActionLink("Delete","Delete",new{id=item.ExpenditureID})
                 </text>
     )
@@ -45,15 +57,56 @@ columns : new[]{
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a onclick="createpartial()">Pengeluaran Baru</a>
 </p>
+
+@* Modal Form *@
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Data</h4>
+            </div>
+            <div id="modal-body">
+
+            </div>
+        </div>                 
+    </div>
+  </div>
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryui")
     <script type="text/javascript">
-        $(function() {
-            $('#txttanggal').datepicker({});
-        })
+        function createpartial() {
+            $.ajax({
+                url : "Expenditure/CreatePartial",
+                type: "GET",
+                success: function (data) {
+                    $('#modal-body').html(data);
+                    $('#txttanggal').datepicker({});
+                    $('#myModal').modal('show');
+                }
+            });
+        }
+
+        function Edit(id) {
+            $.ajax({
+                url: "Expenditure/EditPartial/"+id,
+                type: "GET",
+                success: function (data) {
+                    $('#modal-body').html(data);
+                    $('#txttanggal').datepicker({});
+                    $('#myModal').modal('show');
+                }
+            });
+        }
+
+        function CaribyPeriode() {
+            window.location= "/Expenditure/Index/"+$('#Month').val() +  $('#year').val();
+            //alert($('#Month').val() +  $('#year').val());
+        }
+
     </script>
 }
 

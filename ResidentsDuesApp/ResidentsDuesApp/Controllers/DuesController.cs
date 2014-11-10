@@ -136,6 +136,30 @@ namespace ResidentsDuesApp.Controllers
             return PartialView("_PayDues", due);
         }
 
+        public ActionResult EditDues(int id = 0)
+        {
+            due due = db.dues.Find(id);
+            if (due == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.HouseID = new SelectList(ComBoxData(), "HouseID", "HouseNumber", due.HouseID);
+            return PartialView("_PayDues", due);
+        }
+
+        [HttpPost]
+        public ActionResult EditDues(due due)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(due).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.HouseID = new SelectList(ComBoxData(), "HouseID", "HouseNumber", due.HouseID);
+            return PartialView("_PayDues", due);
+        }
+
         //
         // GET: /Dues/Create
 
